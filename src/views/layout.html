@@ -9,6 +9,10 @@
 
 <body>
   {{renderBody}}
+  <script src="http://localhost:9107/light-reload.js"></script>
+  <script>
+    lightReload.init(); //对应服务端的端口，不传递默认是9107
+  </script>
   {{renderSection 'footer'}}
 </body>
 
