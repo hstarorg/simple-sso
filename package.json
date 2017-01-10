@@ -22,5 +22,22 @@
   "bugs": {
     "url": "https://github.com/hstarorg/simple-sso/issues"
   },
-  "homepage": "https://github.com/hstarorg/simple-sso#readme"
+  "homepage": "https://github.com/hstarorg/simple-sso#readme",
+  "dependencies": {
+    "art-template-plus": "^0.1.1",
+    "body-parser": "~1.15.2",
+    "connect-redis": "^3.2.0",
+    "cookie-parser": "~1.4.3",
+    "cors": "^2.8.1",
+    "debug": "~2.2.0",
+    "express": "~4.14.0",
+    "express-session": "^1.14.2",
+    "jade": "~1.11.0",
+    "morgan": "~1.7.0",
+    "passport": "^0.3.2",
+    "serve-favicon": "~2.3.0"
+  },
+  "devDependencies": {
+    "gulp4": "^4.0.1"
+  }
 }
