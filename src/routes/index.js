@@ -3,7 +3,10 @@ const router = express.Router();
 
 const indexBiz = require('./../bizs/indexBiz');
 
-/* GET home page. */
 router.get('/', indexBiz.getIndex);
+
+router.get('/oauth/:site', indexBiz.redirectToOAuthLogin);
+
+router.get('/oauth/:site/callback', indexBiz.doOAuthLogin);
 
 module.exports = router;

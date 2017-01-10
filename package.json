@@ -36,6 +36,8 @@
     "jade": "~1.11.0",
     "morgan": "~1.7.0",
     "passport": "^0.3.2",
+    "passport-github": "^1.1.0",
+    "request": "^2.79.0",
     "serve-favicon": "~2.3.0"
   },
   "devDependencies": {
