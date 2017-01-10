@@ -5,8 +5,10 @@ const indexBiz = require('./../bizs/indexBiz');
 
 router.get('/', indexBiz.getIndex);
 
-router.get('/oauth/:site', indexBiz.redirectToOAuthLogin);
+router.get('/login', indexBiz.getLogin);
 
-router.get('/oauth/:site/callback', indexBiz.doOAuthLogin);
+router.post('/login', indexBiz.doLogin);
+
+router.get('/logout', indexBiz.getLogout);
 
 module.exports = router;

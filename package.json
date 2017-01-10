@@ -37,6 +37,7 @@
     "morgan": "~1.7.0",
     "passport": "^0.3.2",
     "passport-github": "^1.1.0",
+    "passport-weibo": "^0.1.2",
     "request": "^2.79.0",
     "serve-favicon": "~2.3.0"
   },

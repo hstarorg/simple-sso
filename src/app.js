@@ -11,7 +11,9 @@ const passport = require('passport');
 const cors = require('cors');
 
 const config = require('./config');
-const indexRoute = require('./routes/index');
+const indexRouter = require('./routes/index');
+const authRouter = require('./routes/auth');
+const passportHelper = require('./common/passportHelper');
 
 const app = express();
 
@@ -59,8 +61,19 @@ if (config.useRedis) {
 app.use(passport.initialize());
 app.use(passport.session());
 
+passport.serializeUser(function (user, done) {
+  done(null, user);
+});
+
+passport.deserializeUser(function (obj, done) {
+  done(null, obj);
+});
+
+passportHelper.init(passport);
+
 // Load routers
-app.use('/', indexRoute);
+app.use('/', indexRouter);
+app.use('/auth', authRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

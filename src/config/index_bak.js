@@ -13,6 +13,7 @@ module.exports = {
     // pass: 'password', // If redis need password
     unref: true
   },
+  authCallbackHost: 'xxx', // oauth回调地址
   githubOAuth: {
     appKey: 'xxx',
     appSecret: 'xxx'
