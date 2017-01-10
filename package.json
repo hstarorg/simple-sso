@@ -1,0 +1,26 @@
+{
+  "name": "simple-sso",
+  "version": "0.0.1",
+  "description": "A simple sso application.",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hstarorg/simple-sso.git"
+  },
+  "keywords": [
+    "SSO",
+    "QQ",
+    "Weibo",
+    "Github",
+    "OSChina"
+  ],
+  "author": "Jay.M.Hu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hstarorg/simple-sso/issues"
+  },
+  "homepage": "https://github.com/hstarorg/simple-sso#readme"
+}
