@@ -13,6 +13,14 @@ module.exports = {
 
   },
 
+  getRegister(req, res, next) {
+
+  },
+
+  doRegister(req, res, next) {
+
+  },
+
   getLogout(req, res, next) {
 
   }

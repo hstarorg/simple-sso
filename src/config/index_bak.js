@@ -1,8 +1,11 @@
+const path = require('path');
+
 module.exports = {
   port: 7853,
   debug: true,
   useRedis: false, // 是否使用redis存储session
   sessionSecret: '', // Session 安全码
+  dbFolder: path.join(__dirname, '../database'),
   redisOptions: {
     host: 'xxx',
     port: 12345,
@@ -15,7 +18,11 @@ module.exports = {
   },
   authCallbackHost: 'xxx', // oauth回调地址
   githubOAuth: {
-    appKey: 'xxx',
-    appSecret: 'xxx'
+    appKey: '',
+    appSecret: ''
+  },
+  weiboOAuth: {
+    appKey: '',
+    appSecret: ''
   }
 };
