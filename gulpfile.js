@@ -33,7 +33,9 @@ gulp.task('copy', () => {
 
 gulp.task('css', () => {
   return gulp.src('./src/assets/css/all.styl')
-    .pipe(stylus())
+    .pipe(stylus({
+      'include css': true
+    }))
     .pipe(gulp.dest('dist/assets/css'));
 });
 

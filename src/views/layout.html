@@ -5,17 +5,22 @@
   <meta charset="UTF-8">
   <base href="/">
   <meta name="viewport" content="initial-scale=1.0,user-scalable=0,maximum-scale=1.0,width=device-width">
-  <title>[[block 'title']][[/block]] - Simple SSO</title>
-  <link rel="stylesheet" href="assets/css/all.css">
-  [[block 'head']] [[/block]]
+  <title>[[block 'title']][[/block]] - HSTAR SSO</title>
+  <link rel="stylesheet" href="static/semantic-ui/semantic.min.css">
+  <link rel="stylesheet" href="assets/css/all.css"> [[block 'head']] [[/block]]
 </head>
 
 <body>
-  <header class="fixed sso-header">
-    <div class="container">
-
+  <div class="ui fixed inverted menu sso-header">
+    <div class="ui container">
+      <a href="" class="header item">
+        HSTAR SSO
+      </a>
+      <div class="right menu">
+        <a class="item">User Info</a>
+      </div>
     </div>
-  </header>
+  </div>
   [[block 'body']] [[/block]]
   <script src="http://localhost:9107/light-reload.js"></script>
   <script>

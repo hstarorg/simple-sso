@@ -1,20 +1,10 @@
-[[extend './layout.html']]
-[[block 'title']]
-  Index
-[[/block]]
-[[block 'body']]
-<div class="main">
-  <fieldset>
-    <legend>Login</legend>
-    <ul>
-      <li><a href="/auth/github">Github Login</a></li>
-      <li><a href="/auth/weibo">Weibo Login</a></li>
-    </ul>
-  </fieldset>
-
-  <fieldset>
-    <legend>User Info</legend>
-
-  </fieldset>
+[[extend './layout.html']] [[block 'title']] Index [[/block]] [[block 'body']]
+<div class="ui main text container">
+  <h1 class="ui header">UserId：[[id]]</h1>
+  <p>DisplayName: [[displayName]]</p>
+  <p>UserName: [[username]]</p>
+  <p>
+    <img src="[[_json.avatar_url]]" alt="Avatar">
+  </p>
 </div>
 [[/block]]

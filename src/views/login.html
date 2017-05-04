@@ -1,14 +1,84 @@
-[[extend './layout.html']]
-[[block 'title']]用户登录[[/block]]
-[[block 'body']]
-<div class="login-box">
-  User Name: <input type="text">
-  <br>
-  Pass Word: <input type="password">
-
-  <br>
-
-  <button type="button" class="btn btn-default">button</button>
-
+[[extend './layout.html']] [[block 'title']]用户登录[[/block]] [[block 'body']]
+<div class="ui main text container">
+  <div class="ui grid page center aligned">
+    <div class="row">
+      <div class="sixteen wide column">
+        <form action="/login" class="left aligned ui form flat segment" method="post">
+          <header class="login-header">
+            <div>
+              <i class="user icon"></i>
+              <span>登录</span>
+            </div>
+            <span class="float-right register"><a href="/signup">注册</a></span>
+          </header>
+          <div class="ui grid">
+            <div class="row">
+              <div class="twelve wide centered column">
+                <div class="field">
+                  <input name="username" placeholder="请输入账户" size="30" type="text">
+                </div>
+                <div class="field">
+                  <input name="password" placeholder="密码不少于6位" size="30" type="password">
+                </div>
+                <div class="two fields">
+                  <div class="field">
+                    <div class="ui checkbox">
+                      <input id="remember" type="checkbox" name="remember">
+                      <label for="remember">记住我</label>
+                    </div>
+                  </div>
+                  <div class="field" style="text-align: right">
+                    <a href="/password/new" class="forget-password">忘记密码?</a>
+                  </div>
+                </div>
+                <div class="field">
+                  <button class="fluid ui orange right labeled icon button">
+                    <i class="right arrow icon"></i>  登 录
+                  </button>
+                </div>
+                <div class="field">
+                  <div class="ui horizontal divider header">
+                    <span class="sso-other-login">其他方式登录</span>
+                  </div>
+                  <div class="ui horizontal fluid list other-login-list">
+                    <div class="item">
+                      <a href="/auth/github" class="ui circular icon button">
+                        <i class="github icon"></i>
+                      </a>
+                    </div>
+                    <div class="item">
+                      <a href="/auth/weibo" class="ui circular icon button">
+                        <i class="weibo icon"></i>
+                      </a>
+                    </div>
+                    <div class="item">
+                      <a href="/auth/qq" class="ui circular icon button">
+                        <i class="qq icon"></i>
+                      </a>
+                    </div>
+                    <div class="item">
+                      <a href="/auth/wechat" class="ui circular icon button">
+                        <i class="wechat icon"></i>
+                      </a>
+                    </div>
+                    <div class="item">
+                      <a href="/auth/google" class="ui circular icon button">
+                        <i class="google icon"></i>
+                      </a>
+                    </div>
+                    <div class="item">
+                      <a href="/auth/windows" class="ui circular icon button">
+                        <i class="windows icon"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>
 [[/block]]

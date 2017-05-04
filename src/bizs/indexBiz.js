@@ -5,7 +5,8 @@ module.exports = {
     if (!req.user) {
       return res.redirect('/login');
     }
-    res.render('index', { abc: 111 });
+    console.log(req.user);
+    res.render('index', req.user);
   },
 
   getLogin(req, res, next) {
@@ -13,7 +14,7 @@ module.exports = {
   },
 
   doLogin(req, res, next) {
-
+    res.redirect('/');
   },
 
   getRegister(req, res, next) {

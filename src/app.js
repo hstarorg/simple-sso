@@ -43,7 +43,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
-
+app.use('/static', express.static(path.join(__dirname, '../static')));
 // Load session config
 if (config.useRedis) {
   app.use(session({
@@ -56,6 +56,7 @@ if (config.useRedis) {
   app.use(session({
     secret: config.sessionSecret,
     resave: false,
+    cookie: { maxAge: config.expires * 1000 },
     saveUninitialized: false
   }));
 }
