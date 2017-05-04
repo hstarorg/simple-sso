@@ -4,10 +4,10 @@ module.exports = {
   port: 7853,
   debug: true,
   useRedis: false, // 是否使用redis存储session
-  sessionSecret: '', // Session 安全码
+  sessionSecret: Math.random().toString(36), // Session 安全码
   dbFolder: path.join(__dirname, '../database'),
   redisOptions: {
-    host: 'xxx',
+    host: '10.16.75.12',
     port: 12345,
     prefix: '',
     ttl: 1800,
@@ -16,13 +16,13 @@ module.exports = {
     // pass: 'password', // If redis need password
     unref: true
   },
-  authCallbackHost: 'xxx', // oauth回调地址
+  authCallbackHost: 'http://localhost:7853/auth',
   githubOAuth: {
-    appKey: '',
-    appSecret: ''
+    appKey: 'xxx',
+    appSecret: 'xxx'
   },
   weiboOAuth: {
-    appKey: '',
-    appSecret: ''
+    appKey: 'xxx',
+    appSecret: 'xxx'
   }
 };
