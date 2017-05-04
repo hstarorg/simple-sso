@@ -3,17 +3,20 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>{{title || 'Simple SSO'}}</title>
-  {{renderSection 'header'}}
+  <title>[[block 'title']][[/block]] - Simple SSO</title>
+  [[block 'head']]
+  [[/block]]
 </head>
 
 <body>
-  {{renderBody}}
+  [[block 'body']]
+  [[/block]]
   <script src="http://localhost:9107/light-reload.js"></script>
   <script>
     lightReload.init(); //对应服务端的端口，不传递默认是9107
   </script>
-  {{renderSection 'footer'}}
+  [[block 'footer']]
+  [[/block]]
 </body>
 
 </html>

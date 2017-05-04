@@ -1,7 +1,7 @@
 # simple-sso
 A simple  single sign on project.
 
-# Usage
+# Develop
 
 ```bash
 # Clone the project

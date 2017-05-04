@@ -6,7 +6,8 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const RedisStore = require('connect-redis')(session);
-const template = require('art-template-plus');
+const artTemplate = require('art-template');
+const expressArtTemplate = require('express-art-template');
 const passport = require('passport');
 const cors = require('cors');
 
@@ -21,13 +22,16 @@ if (!config.debug) {
   app.set('env', 'production');
 }
 
-// view engine setup
-// config template engine
-template.config('base', '');
-template.config('extname', '.html');
-// define view engine
-app.engine('html', template.__express);
-// view engine setup
+// art-template options
+artTemplate.defaults.rules.shift();
+let rule = artTemplate.defaults.rules[0];
+rule.test = new RegExp(rule.test.source.replace('{{', '\\[\\[').replace('}}', '\\]\\]'));
+
+// define view engine and engine options
+app.engine('html', expressArtTemplate);
+app.set('view options', {
+  debug: app.get('env') !== 'production'
+});
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'html');
 

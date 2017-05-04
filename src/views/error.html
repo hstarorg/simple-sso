@@ -1,8 +1,13 @@
-{{layout './layout'}}
+{{extend './layout.html'}}
+{{block 'title'}}
+  出错啦
+{{/block}}
+{{block 'body'}}
 <div class="main">
   <h1>{{message}}</h1>
   <h2>{{error.status}}</h2>
   <pre>
-{{#error.stack}}
+{{@error.stack}}
   </pre>
 </div>
+{{/block}}
