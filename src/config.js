@@ -17,13 +17,21 @@ module.exports = {
     // pass: 'password', // If redis need password
     unref: true
   },
-  authCallbackHost: 'http://localhost:7853/auth',
-  githubOAuth: {
-    appKey: 'xxx',
-    appSecret: 'xxx'
-  },
-  weiboOAuth: {
-    appKey: 'xxx',
-    appSecret: 'xxx'
+  sites: {
+    github: {
+      appKey: '5aa6e663602ddb34c6df',
+      appSecret: 'xxx',
+      callbackUrl: 'http://10.16.85.170:7853/auth/github/callback'
+    },
+    weibo: {
+      appKey: '3987010595',
+      appSecret: 'xxx',
+      callbackUrl: 'http://10.16.85.170:7853/auth/weibo/callback'
+    },
+    qq: {
+      appKey: '1105871515',
+      appSecret: 'xxx',
+      callbackUrl: 'http://10.16.85.170:7853/auth/qq/callback'
+    }
   }
 };

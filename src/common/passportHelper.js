@@ -1,32 +1,30 @@
 const GitHubStrategy = require('passport-github').Strategy;
 const WeiboStrategy = require('passport-weibo').Strategy;
-
+const QQStrategy = require('passport-qq').Strategy;
 const config = require('./../config');
+
+const strategyMap = {
+  github: GitHubStrategy,
+  weibo: WeiboStrategy,
+  qq: QQStrategy
+};
 
 module.exports = {
   init(passport) {
-    this._initGithub(passport);
-    this._initWeibo(passport);
+    Object.keys(config.sites)
+      .forEach(siteKey => {
+        let site = config.sites[siteKey];
+        this._initStrategy(passport, site, siteKey);
+      });
   },
 
-  _initGithub(passport) {
-    passport.use(new GitHubStrategy({
-      clientID: config.githubOAuth.appKey,
-      clientSecret: config.githubOAuth.appSecret,
-      callbackURL: `${config.authCallbackHost}/github/callback`
+  _initStrategy(passport, site, siteKey) {
+    let Strategy = strategyMap[siteKey];
+    passport.use(new Strategy({
+      clientID: site.appKey,
+      clientSecret: site.appSecret,
+      callbackURL: site.callbackUrl
     }, (accessToken, refreshToken, profile, done) => {
-      console.log(profile);
-      return done(null, profile);
-    }));
-  },
-
-  _initWeibo(passport) {
-    passport.use(new WeiboStrategy({
-      clientID: config.weiboOAuth.appKey,
-      clientSecret: config.weiboOAuth.appSecret,
-      callbackURL: `http://sso.hstar.org/weibo/callback`
-    }, (accessToken, refreshToken, profile, done) => {
-      console.log(profile);
       return done(null, profile);
     }));
   }
