@@ -15,7 +15,7 @@ router.get('/weibo/callback', passport.authenticate('weibo', { failureRedirect: 
 });
 
 router.get('/qq', passport.authenticate('qq'));
-router.get('/qq/callback', passport.authenticate('weibo', { failureRedirect: '/login' }), (req, res, next) => {
+router.get('/qq/callback', passport.authenticate('qq', { failureRedirect: '/login' }), (req, res, next) => {
   res.redirect('/');
 });
 
