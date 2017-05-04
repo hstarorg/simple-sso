@@ -45,6 +45,7 @@
   "devDependencies": {
     "gulp-develop-server": "^0.5.2",
     "gulp-newer": "^1.3.0",
+    "gulp-stylus": "^2.6.0",
     "gulp4": "^4.0.1",
     "light-reload": "^0.2.0",
     "node-notifier": "^5.1.2",

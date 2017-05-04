@@ -2,11 +2,14 @@ const config = require('./../config');
 
 module.exports = {
   getIndex(req, res, next) {
-    res.render('index', { title: 'Simple SSO - Index' });
+    if (!req.user) {
+      return res.redirect('/login');
+    }
+    res.render('index', { abc: 111 });
   },
 
   getLogin(req, res, next) {
-    res.render('login', { title: 'Simple SSO - Login' });
+    res.render('login', { abc: 'Simple SSO - Login' });
   },
 
   doLogin(req, res, next) {

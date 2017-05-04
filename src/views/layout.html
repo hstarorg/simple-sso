@@ -3,20 +3,25 @@
 
 <head>
   <meta charset="UTF-8">
+  <base href="/">
+  <meta name="viewport" content="initial-scale=1.0,user-scalable=0,maximum-scale=1.0,width=device-width">
   <title>[[block 'title']][[/block]] - Simple SSO</title>
-  [[block 'head']]
-  [[/block]]
+  <link rel="stylesheet" href="assets/css/all.css">
+  [[block 'head']] [[/block]]
 </head>
 
 <body>
-  [[block 'body']]
-  [[/block]]
+  <header class="fixed sso-header">
+    <div class="container">
+
+    </div>
+  </header>
+  [[block 'body']] [[/block]]
   <script src="http://localhost:9107/light-reload.js"></script>
   <script>
     lightReload.init(); //对应服务端的端口，不传递默认是9107
   </script>
-  [[block 'footer']]
-  [[/block]]
+  [[block 'footer']] [[/block]]
 </body>
 
 </html>

@@ -4,6 +4,7 @@ const developServer = require('gulp-develop-server');
 const notifier = require('node-notifier');
 const lightReload = require('light-reload');
 const newer = require('gulp-newer');
+const stylus = require('gulp-stylus');
 
 const notify = message => {
   return done => {
@@ -23,11 +24,20 @@ gulp.task('clean', done => {
 
 gulp.task('copy', () => {
   return gulp.src([
-    'src/**/*'
+    'src/**/*',
+    '!src/assets/**/*'
   ])
     .pipe(newer(destFolder))
     .pipe(gulp.dest(destFolder));
 });
+
+gulp.task('css', () => {
+  return gulp.src('./src/assets/css/all.styl')
+    .pipe(stylus())
+    .pipe(gulp.dest('dist/assets/css'));
+});
+
+gulp.task('build', gulp.parallel('copy', 'css'));
 
 gulp.task('serve', done => {
   lightReload.init();
@@ -44,7 +54,9 @@ gulp.task('restart', done => {
     if (err) {
       console.error(err);
     }
-    lightReload.reload();
+    setTimeout(() => {
+      lightReload.reload();
+    }, 500);
     done();
   });
 });
@@ -52,7 +64,7 @@ gulp.task('restart', done => {
 gulp.task('watch', done => {
   gulp.watch([
     'src/**/*'
-  ], gulp.series('copy', 'restart', notify('Server restarted...')));
+  ], gulp.series('build', 'restart', notify('Server restarted...')));
   done();
 });
 
@@ -63,7 +75,7 @@ gulp.task('open', done => {
 
 gulp.task('dev', gulp.series(
   'clean',
-  'copy',
+  'build',
   gulp.parallel('serve', 'watch'),
   'open'
 ));
