@@ -14,7 +14,7 @@
 | Password | varchar(500) | N | |  用户登录密码，需要加密 |
 | IsExternalUser | int | Y | 0 | 是否是外部用户，三方登录用户 |
 | AvatarUrl | varchar(500) | N | | 头像地址 |
-| EamilAddress | varchar(50) | N | | 邮件地址 |
+| EmailAddress | varchar(50) | N | | 邮件地址 |
 | PhoneNumber | varchar(50) | N | | 手机号码 |
 | UserStatus | varchar(50) | Y | 'Active' | 用户状态，激活(Active)，禁用(InActive) |
 | CreateDate | datetime | Y | | 账户创建日期 |
