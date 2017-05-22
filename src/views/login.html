@@ -1,4 +1,8 @@
-[[extend './layout.html']] [[block 'title']]用户登录[[/block]] [[block 'body']]
+[[extend './shared/_layout.html']]
+<!-- title -->
+[[block 'title']]用户登录[[/block]]
+<!-- body -->
+[[block 'body']]
 <div class="ui main text container">
   <div class="ui grid page center aligned">
     <div class="row">
@@ -24,7 +28,7 @@
                   <div class="field">
                     <div class="ui checkbox">
                       <input id="remember" type="checkbox" name="remember">
-                      <label for="remember">记住我</label>
+                      <label for="remember" style="cursor: pointer;">记住我</label>
                     </div>
                   </div>
                   <div class="field" style="text-align: right">
