@@ -1,6 +1,22 @@
 [[extend './shared/_layout.html']]
 <!-- title -->
 [[block 'title']]用户登录[[/block]]
+<!-- footer -->
+[[block 'footer']]
+<script>
+  document.querySelectorAll('.other-login-list .item a').forEach(el => {
+    el.addEventListener('click', function (e) {
+      e.preventDefault();
+      let href = e.target.getAttribute('href');
+      let win = window.open(href, '', 'width=500,height=500,channelmode=yes');
+      win.onclose = function () {
+        window.location.reload();
+      }
+    }, false);
+  });
+
+</script>
+[[/block]]
 <!-- body -->
 [[block 'body']]
 <div class="ui main text container">
