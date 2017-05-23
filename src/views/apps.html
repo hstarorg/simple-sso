@@ -1,0 +1,44 @@
+[[extend './shared/_layout.html']]
+<!-- title -->
+[[block 'title']]Index[[/block]]
+<!-- body -->
+[[block 'body']]
+<div class="ui main container page-apps">
+  <table class="ui celled striped table">
+    <thead>
+      <tr>
+        <th colspan="4" style="line-height: 26px;">
+          SSO Applications
+          <button class="ui labeled icon compact mini right floated button">
+            <i class="plus icon"></i> Create App
+          </button>
+        </th>
+      </tr>
+      <tr>
+        <th class="collapsing">Name</th>
+        <th class="collapsing">App Key</th>
+        <th>Description</th>
+        <th class="collapsing">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      [[if data.length === 0]]
+      <tr>
+        <td colspan="4" class="text center">No apps.</td>
+      </tr>
+      [[/if]]
+      <!-- split -->
+      [[each data]]
+      <tr>
+        <td>
+          [[$value.AppName]]
+        </td>
+        <td>[[$value.AppKey]]</td>
+        <td>[[$value.AppDescription]]</td>
+        <td>[[$value.AppStatus]]</td>
+      </tr>
+      [[/each]]
+    </tbody>
+  </table>
+</div>
+[[/block]]

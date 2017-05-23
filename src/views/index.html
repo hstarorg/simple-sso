@@ -3,12 +3,41 @@
 [[block 'title']]Index[[/block]]
 <!-- body -->
 [[block 'body']]
-<div class="ui main text container">
-  <h1 class="ui header">UserId：[[UnionId]]</h1>
-  <p>DisplayName: [[DisplayName]]</p>
-  <p>UserName: [[UserName]]</p>
-  <p>
-    <img src="[[AvatarUrl]]" alt="Avatar">
-  </p>
+<div class="ui main text container page-index">
+  <div class="ui card">
+    <div class="content">
+      <div class="right floated meta">[[data.UnionId]]</div>
+      <img class="ui avatar image" src="[[data.AvatarUrl]]"> [[DisplayName]]
+    </div>
+    <div class="image">
+      <img src="[[data.AvatarUrl]]">
+    </div>
+    <div class="content">
+      <div>
+        <span>UserName: [[data.UserName]]</span>
+      </div>
+      <div>
+        <span>Is External User: [[data.IsExternalUser === 1 ? 'Yes': 'No']]</span>
+      </div>
+      <div>
+        <span>Email Address: [[data.EmailAddress]]</span>
+      </div>
+      <div>
+        <span>Phone Number: [[data.PhoneNumber]]</span>
+      </div>
+      <div>
+        <span>Gender: [[data.Gender]]</span>
+      </div>
+      <div>
+        <span>Location: [[data.Location]]</span>
+      </div>
+      <div>
+        <span>Create Date: [[data.CreateDate.toLocaleDateString()]]</span>
+      </div>
+      <div>
+        <span>Last Update Date: [[data.LastUpdateDate.toLocaleDateString()]]</span>
+      </div>
+    </div>
+  </div>
 </div>
 [[/block]]

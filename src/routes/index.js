@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const indexBiz = require('./../bizs/indexBiz');
+const authBiz = require('./../bizs/authBiz');
 
 router.get('/', indexBiz.getIndex);
 router.get('/login_success', indexBiz.getLoginSuccess);
@@ -13,5 +14,7 @@ router.get('/signup', indexBiz.getSignup);
 router.post('/signup', indexBiz.doSignup);
 
 router.get('/logout', indexBiz.getLogout);
+
+router.get('/apps', authBiz.mustLogin, indexBiz.getMyApps);
 
 module.exports = router;

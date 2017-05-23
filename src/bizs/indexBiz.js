@@ -1,18 +1,32 @@
 const config = require('./../config');
+const db = require('../common/db');
+const sqlManager = require('../models/sqlManager');
+
+const getIndex = (req, res, next) => {
+  if (!req.user) {
+    return res.redirect('/login');
+  }
+  let unionId = req.session.user.UnionId;
+  db.queryScalar(sqlManager.QUERY_USER_INFO_BY_ID, [unionId])
+    .then(user => {
+      res.render('index', Object.assign({ UnionId: unionId }, { data: user }));
+    }).catch(next);
+};
 
 const getLoginSuccess = (req, res, next) => {
   res.render('login_success');
 };
 
-module.exports = {
-  getIndex(req, res, next) {
-    if (!req.user) {
-      return res.redirect('/login');
-    }
-    console.log(req.session.user);
-    res.render('index', req.session.user);
-  },
+const getMyApps = (req, res, next) => {
+  let unionId = req.session.user.UnionId;
+  db.query(sqlManager.QUERY_MY_APP_LIST, [unionId])
+    .then(apps => {
+      console.log(apps);
+      res.render('apps', Object.assign({}, { UnionId: unionId }, { data: apps }));
+    }).catch(next);
+};
 
+module.exports = {
   getLogin(req, res, next) {
     res.render('login');
   },
@@ -32,5 +46,7 @@ module.exports = {
   getLogout(req, res, next) {
 
   },
-  getLoginSuccess
+  getIndex,
+  getLoginSuccess,
+  getMyApps
 };

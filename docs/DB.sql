@@ -11,6 +11,7 @@ CREATE TABLE `UnionUser` (
   PRIMARY KEY (`UnionId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
+
 CREATE TABLE `UnionUserExt` (
   `Id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增主键',
   `UnionId` int(11) NOT NULL COMMENT '关联的通用用户ID',
@@ -26,6 +27,20 @@ CREATE TABLE `ExternalUserExt` (
   `Provider` varchar(50) NOT NULL COMMENT '第三方登录名称',
   `UnionId` int(11) NOT NULL COMMENT '关联的通用用户ID',
   `ExternalUserId` varchar(50) NOT NULL COMMENT '外部用户ID',
+  `CreateDate` datetime NOT NULL COMMENT '创建日期',
+  PRIMARY KEY (`Id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `SsoApplication` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增主键',
+  `AppName` varchar(50) NOT NULL COMMENT '应用名称',
+  `AppDescription` varchar(2000) DEFAULT NULL COMMENT '应用描述信息',
+  `AppKey` varchar(50) NOT NULL COMMENT 'App KEY',
+  `AppSecret` varchar(500) DEFAULT NULL COMMENT 'App 安全码',
+  `CallbackUrl` varchar(500) NOT NULL COMMENT '回调地址',
+  `AppStatus` varchar(50) NOT NULL COMMENT '应用状态',
+  `CreateBy` int(11) NOT NULL COMMENT '创建人',
   `CreateDate` datetime NOT NULL COMMENT '创建日期',
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
