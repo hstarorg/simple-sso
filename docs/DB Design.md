@@ -38,3 +38,17 @@
 | UnionId | int | Y | | 关联的通用用户ID |
 | ExternalUserId | varchar(50) | Y | | 外部用户ID |
 | CreateDate | datetime | Y | | 创建日期 |
+
+## SSO应用表（SsoApplication）
+
+| 字段 | 类型 | 非空 | 默认值 | 描述信息 |
+| --- | --- | --- | --- | --- |
+| Id | int | Y | | 自增主键 |
+| AppName | varchar(50) | Y | | 应用名称 |
+| AppDescription | varchar(2000) | N | | 应用描述信息 |
+| AppKey | varchar(50) | Y | | App KEY |
+| AppSecret | varchar(500) | N | | App 安全码 |
+| CallbackUrl | varchar(500) | Y | | 回调地址 |
+| AppStatus | varchar(50) | Y | | 应用状态 |
+| CreateBy | int | Y | | 创建人 |
+| CreateDate | datetime | Y | | 创建日期 |
