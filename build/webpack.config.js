@@ -3,16 +3,8 @@ const webpack = require('webpack');
 const util = require('./util');
 
 module.exports = {
-  devtool: 'cheap-source-map',
-  cache: true,
-  profile: true,
-  resolve: {
-    extensions: ['.js']
-  },
-  watchOptions: {
-    ignored: /node_modules/
-  },
   entry: {
+    common: util.root('src/assets/js/common/index.js'),
     apps: util.root('src/assets/js/apps.js')
   },
   output: {
@@ -20,15 +12,26 @@ module.exports = {
     filename: 'js/[name].js',
     chunkFilename: '[id].js'
   },
+  devtool: 'cheap-source-map',
+  cache: true,
+  profile: true,
+  resolve: {
+    extensions: ['.js', '.vue']
+  },
+  watchOptions: {
+    ignored: /node_modules/
+  },
+
   plugins: [
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false
-      }
-    })
+    // new webpack.optimize.UglifyJsPlugin({
+    //   compress: {
+    //     warnings: false
+    //   }
+    // })
   ],
   module: {
     rules: [
+      { test: /\.vue$/, loader: 'vue-loader', options: { loaders: {} } },
       { test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/ }
       // { test: /\.css$/, use: ExtractTextPlugin.extract({ use: 'css-loader' }) },
       // { test: /\.styl$/, use: ExtractTextPlugin.extract({ use: 'css-loader!stylus-loader' }) },
