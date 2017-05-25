@@ -1,6 +1,11 @@
 [[extend './shared/_layout.html']]
 <!-- title -->
 [[block 'title']]Index[[/block]]
+
+<!-- footer -->
+[[block 'footer']]
+  <script src="assets/js/apps.js"></script>
+[[/block]]
 <!-- body -->
 [[block 'body']]
 <div class="ui main container page-apps">
@@ -9,7 +14,7 @@
       <tr>
         <th colspan="4" style="line-height: 26px;">
           SSO Applications
-          <button class="ui labeled icon compact mini right floated button">
+          <button class="ui labeled icon compact mini right floated button" @click="showCreateAppModal">
             <i class="plus icon"></i> Create App
           </button>
         </th>

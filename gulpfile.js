@@ -5,6 +5,10 @@ const notifier = require('node-notifier');
 const lightReload = require('light-reload');
 const newer = require('gulp-newer');
 const stylus = require('gulp-stylus');
+const webpack = require('webpack');
+
+const util = require('./build/util');
+const webpackConfig = require('./build/webpack.config');
 
 const notify = message => {
   return done => {
@@ -14,7 +18,14 @@ const notify = message => {
     });
     done();
   };
-}
+};
+
+const refresh = () => {
+  setTimeout(() => {
+    lightReload.reload();
+  }, 500);
+};
+
 const destFolder = 'dist';
 
 gulp.task('clean', done => {
@@ -39,6 +50,15 @@ gulp.task('css', () => {
     .pipe(gulp.dest('dist/assets/css'));
 });
 
+gulp.task('js', done => {
+  const compiler = webpack(webpackConfig);
+  compiler.watch({ aggregateTimeout: 500, poll: false, ignored: [/node_modules/] }, (err, stats) => {
+    util.showWebpackError(err, stats);
+    refresh();
+    done();
+  });
+});
+
 gulp.task('build', gulp.parallel('copy', 'css'));
 
 gulp.task('serve', done => {
@@ -56,17 +76,26 @@ gulp.task('restart', done => {
     if (err) {
       console.error(err);
     }
-    setTimeout(() => {
-      lightReload.reload();
-    }, 500);
+    refresh();
     done();
   });
 });
 
 gulp.task('watch', done => {
   gulp.watch([
-    'src/**/*'
-  ], gulp.series('build', 'restart', notify('Server restarted...')));
+    'src/bizs/**/*',
+    'src/common/**/*',
+    'src/models/**/*',
+    'src/*.js'
+  ], gulp.series('copy', 'restart', notify('Server restarted...')));
+
+  gulp.watch([
+    'src/views/**/*'
+  ], gulp.series('copy', refresh));
+
+  gulp.watch([
+    'src/assets/css/**/*'
+  ], gulp.series('css', refresh));
   done();
 });
 
@@ -78,6 +107,7 @@ gulp.task('open', done => {
 gulp.task('dev', gulp.series(
   'clean',
   'build',
+  'js',
   gulp.parallel('serve', 'watch'),
   'open'
 ));
