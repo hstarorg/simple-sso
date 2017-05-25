@@ -20,9 +20,10 @@ const notify = message => {
   };
 };
 
-const refresh = () => {
+const refresh = done => {
   setTimeout(() => {
     lightReload.reload();
+    done && done();
   }, 500);
 };
 
@@ -90,12 +91,13 @@ gulp.task('watch', done => {
   ], gulp.series('copy', 'restart', notify('Server restarted...')));
 
   gulp.watch([
-    'src/views/**/*'
+    'src/views/**'
   ], gulp.series('copy', refresh));
 
   gulp.watch([
     'src/assets/css/**/*'
   ], gulp.series('css', refresh));
+
   done();
 });
 

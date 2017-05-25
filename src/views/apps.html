@@ -10,10 +10,10 @@
 <!-- body -->
 [[block 'body']]
 <div class="ui main container page-apps">
-  <table class="ui celled striped table">
+  <table class="ui sortable celled striped selectable black very compact table">
     <thead>
       <tr>
-        <th colspan="4" style="line-height: 26px;">
+        <th colspan="6" style="line-height: 26px;">
           SSO Applications
           <button class="ui labeled icon compact mini right floated button" @click="showCreateAppModal">
             <i class="plus icon"></i> Create App
@@ -21,31 +21,59 @@
         </th>
       </tr>
       <tr>
-        <th class="collapsing">Name</th>
-        <th class="collapsing">App Key</th>
+        <th class="collapsing"><i class="heartbeat icon"></i></th>
+        <th>Name</th>
+        <th>App Key</th>
         <th>Description</th>
         <th class="collapsing">Status</th>
+        <th>Operate</th>
       </tr>
     </thead>
     <tbody>
       [[if data.length === 0]]
       <tr>
-        <td colspan="4" class="text center">No apps.</td>
+        <td colspan="6" class="text center">No apps.</td>
       </tr>
       [[/if]]
       <!-- split -->
       [[each data]]
       <tr>
+        <td></td>
         <td>
           [[$value.AppName]]
         </td>
         <td>[[$value.AppKey]]</td>
         <td>[[$value.AppDescription]]</td>
         <td>[[$value.AppStatus]]</td>
+        <td class="collapsing align center">
+          <div title="Edit APP" class="basic compact mini blue ui icon button"><i class="edit icon"></i></div>
+          <div title="Delete APP" class="basic compact mini blue ui icon button"><i class="minus icon"></i></div>
+        </td>
       </tr>
       [[/each]]
     </tbody>
   </table>
-  <sm-modal></sm-modal>
+  <sm-modal :shown.sync="editModal.shown" :header="editModal.header" @ok="saveApp">
+    <form class="ui small form">
+      <div class="field">
+        <label>App Name</label>
+        <input type="text" name="name" v-model="appModel.AppName">
+      </div>
+      <div class="field">
+        <label>Callback Url</label>
+        <input type="text" name="CallbackUrl" v-model="appModel.CallbackUrl">
+      </div>
+      <div class="field">
+        <label>App Description</label>
+        <textarea name="description" v-model="appModel.AppDescription"></textarea>
+      </div>
+      <div class="field">
+        <div class="ui slider checkbox">
+          <input type="checkbox" name="IsActive" v-model="appModel.IsActive">
+          <label>Is Active</label>
+        </div>
+      </div>
+    </form>
+  </sm-modal>
 </div>
 [[/block]]
