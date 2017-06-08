@@ -1,12 +1,12 @@
 new Vue({
   el: document.querySelector('.page-apps'),
   data: {
-    editModal: {
+    appList: [],
+    appModal: {
       shown: false,
       header: 'Create new app'
     },
-    appModalShown: false,
-    appModel: {
+    selectedApp: {
       Id: 0,
       AppName: '',
       AppDescription: '',
@@ -14,27 +14,55 @@ new Vue({
       IsActive: true
     }
   },
+  created() {
+    this._loadAppList();
+  },
   methods: {
-    showCreateAppModal() {
-      this._resetAppModel();
-      this.editModal.shown = true;
-    },
-
-    showEditAppModal(app) {
-      Object.keys(this.appModel).forEach(key => this.appModel[key] = app[key]);
-      this.editModal.shown = true;
-    },
-
-    saveApp() {
-      if (this.appModel.Id === 0) { // 新增逻辑
-
+    showAppModal(app) {
+      if (app) { // Edit
+        Object.keys(this.selectedApp).forEach(key => this.selectedApp[key] = app[key]);
+        this.selectedApp.IsActive = app.AppStatus == 'Active';
       } else {
-        // 编辑逻辑
+        this._resetAppModel();
+      }
+      this.appModal.shown = true;
+    },
+
+    confrimDeleteApp(app) {
+      if (confirm('Sure to delete app?')) {
+        axios.delete(`${AppConf.apiHost}/app/${app.Id}`)
+          .then(() => {
+            this._loadAppList();
+          });
       }
     },
 
+    saveApp() {
+      if (this.selectedApp.Id === 0) { // 新增逻辑
+        axios.post(`${AppConf.apiHost}/app`, this.selectedApp)
+          .then(res => {
+            this.appModal.shown = false;
+            this._loadAppList();
+          });
+      } else {
+        // 编辑逻辑
+        axios.put(`${AppConf.apiHost}/app/${this.selectedApp.Id}`, this.selectedApp)
+          .then(res => {
+            this.appModal.shown = false;
+            this._loadAppList();
+          });
+      }
+    },
+
+    _loadAppList() {
+      axios.get(`${AppConf.apiHost}/app`)
+        .then(res => {
+          this.appList = res.data;
+        });
+    },
+
     _resetAppModel() {
-      this.appModel = {
+      this.selectedApp = {
         Id: 0,
         AppName: '',
         AppDescription: '',

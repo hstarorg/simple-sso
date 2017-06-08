@@ -21,9 +21,13 @@ const getMyApps = (req, res, next) => {
   let unionId = req.session.user.UnionId;
   db.query(sqlManager.QUERY_MY_APP_LIST, [unionId])
     .then(apps => {
-      console.log(apps);
       res.render('apps', Object.assign({}, { UnionId: unionId }, { data: apps }));
     }).catch(next);
+};
+
+const getAppDetailPage = (req, res, next) => {
+  let appId = req.params.appId;
+  res.render('app-detail', { appId });
 };
 
 module.exports = {
@@ -48,5 +52,6 @@ module.exports = {
   },
   getIndex,
   getLoginSuccess,
-  getMyApps
+  getMyApps,
+  getAppDetailPage
 };

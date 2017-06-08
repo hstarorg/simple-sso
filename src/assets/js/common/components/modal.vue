@@ -13,8 +13,8 @@
       </div>
       <div class="actions">
         <slot name="modal-actions">
-          <div class="ui button deny cancel" @click.prevent="onCancelClick()">{{cancelText}}</div>
-          <div class="ui positive right labeled icon button" @click.prevent="onOkClick()">
+          <div class="ui button deny cancel" @click="onCancelClick">{{cancelText}}</div>
+          <div class="ui positive right labeled icon button" @click="onOkClick">
             {{okText}}
             <i class="checkmark icon"></i>
           </div>

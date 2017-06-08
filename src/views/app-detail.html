@@ -1,0 +1,65 @@
+[[extend './shared/_layout.html']]
+<!-- title -->
+[[block 'title']]App Detail[[/block]]
+
+<!-- footer -->
+[[block 'footer']]
+<script src="assets/js/common.js"></script>
+<script src="assets/js/config.js"></script>
+<script>
+  var serverData = { appId: [[appId]] };
+
+</script>
+<script src="assets/js/app-detail.js"></script>
+[[/block]]
+<!-- body -->
+[[block 'body']]
+<div class="ui main container page-apps">
+  <table class="ui sortable celled striped selectable black compact table">
+    <thead>
+      <tr>
+        <th colspan="2" style="line-height: 26px;">
+          SSO Application Detail
+          <a class="ui labeled icon compact mini right floated button" href="/apps">
+            <i class="undo icon"></i> Return SSO App List
+          </a>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="width: 200px;"> Application Name: </td>
+        <td>{{selectedApp.AppName}}</td>
+      </tr>
+      <tr>
+        <td> Application Description: </td>
+        <td>{{selectedApp.AppDescription}}</td>
+      </tr>
+      <tr>
+        <td> Application CallbackUrl: </td>
+        <td>{{selectedApp.CallbackUrl}}</td>
+      </tr>
+      <tr>
+        <td> Application Key: </td>
+        <td>{{selectedApp.AppKey}}</td>
+      </tr>
+      <tr>
+        <td> Application Secret: </td>
+        <td>{{selectedApp.AppSecret}}
+          <div class="ui labeled icon compact mini button" @click="refreshSecret">
+            <i class="refresh icon"></i> Refresh Secret
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td> Is Active: </td>
+        <td>{{selectedApp.AppStatus}}</td>
+      </tr>
+      <tr>
+        <td> Create Date: </td>
+        <td>{{selectedApp.CreateDate}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+[[/block]]

@@ -5,7 +5,9 @@ const util = require('./util');
 module.exports = {
   entry: {
     common: util.root('src/assets/js/common/index.js'),
-    apps: util.root('src/assets/js/apps.js')
+    config: util.root('src/assets/js/config.js'),
+    apps: util.root('src/assets/js/apps.js'),
+    'app-detail': util.root('src/assets/js/app-detail.js')
   },
   output: {
     path: util.root('dist/assets'),

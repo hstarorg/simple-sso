@@ -1,8 +1,8 @@
 module.exports = {
   port: 7853,
   debug: true,
-  useRedis: false, // 是否使用redis存储session
-  sessionSecret: Math.random().toString(36), // Session 安全码
+  useRedis: true, // 是否使用redis存储session
+  sessionSecret: 'testabcde_X!', //Math.random().toString(36), // Session 安全码
   dbConfig: {
     host: '192.168.1.200',
     port: 3308,
@@ -12,12 +12,12 @@ module.exports = {
   },
   expires: 60 * 60 * 24 * 2, // 2 days
   redisOptions: {
-    host: '10.16.75.12',
-    port: 12345,
+    host: '192.168.1.200',
+    port: 6379,
     prefix: '',
     ttl: 60 * 60 * 24 * 2,
     // disableTTL: true, // If disableTTL is true, ttl would not work.
-    db: 10,
+    db: 0,
     // pass: 'password', // If redis need password
     unref: true
   },

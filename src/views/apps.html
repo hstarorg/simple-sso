@@ -1,10 +1,11 @@
 [[extend './shared/_layout.html']]
 <!-- title -->
-[[block 'title']]Index[[/block]]
+[[block 'title']]SSO Apps[[/block]]
 
 <!-- footer -->
 [[block 'footer']]
 <script src="assets/js/common.js"></script>
+<script src="assets/js/config.js"></script>
 <script src="assets/js/apps.js"></script>
 [[/block]]
 <!-- body -->
@@ -15,7 +16,7 @@
       <tr>
         <th colspan="6" style="line-height: 26px;">
           SSO Applications
-          <button class="ui labeled icon compact mini right floated button" @click="showCreateAppModal">
+          <button class="ui labeled icon compact mini right floated button" @click="showAppModal()">
             <i class="plus icon"></i> Create App
           </button>
         </th>
@@ -23,53 +24,48 @@
       <tr>
         <th class="collapsing"><i class="heartbeat icon"></i></th>
         <th>Name</th>
-        <th>App Key</th>
+        <th style="width: 300px;">App Key</th>
         <th>Description</th>
         <th class="collapsing">Status</th>
         <th>Operate</th>
       </tr>
     </thead>
     <tbody>
-      [[if data.length === 0]]
-      <tr>
+      <tr v-if="appList.length === 0">
         <td colspan="6" class="text center">No apps.</td>
       </tr>
-      [[/if]]
-      <!-- split -->
-      [[each data]]
-      <tr>
-        <td></td>
+      <tr v-for="(app, idx) in appList">
+        <td>{{idx+1}}</td>
         <td>
-          [[$value.AppName]]
+          <a :href="'/app/' + app.Id">{{app.AppName}}</a>
         </td>
-        <td>[[$value.AppKey]]</td>
-        <td>[[$value.AppDescription]]</td>
-        <td>[[$value.AppStatus]]</td>
+        <td>{{app.AppKey}}</td>
+        <td>{{app.AppDescription}}</td>
+        <td>{{app.AppStatus}}</td>
         <td class="collapsing align center">
-          <div title="Edit APP" class="basic compact mini blue ui icon button"><i class="edit icon"></i></div>
-          <div title="Delete APP" class="basic compact mini blue ui icon button"><i class="minus icon"></i></div>
+          <div title="Edit APP" class="basic compact mini blue ui icon button" @click="showAppModal(app)"><i class="edit icon"></i></div>
+          <div title="Delete APP" class="basic compact mini blue ui icon button" @click="confrimDeleteApp(app)"><i class="minus icon"></i></div>
         </td>
       </tr>
-      [[/each]]
     </tbody>
   </table>
-  <sm-modal :shown.sync="editModal.shown" :header="editModal.header" @ok="saveApp">
+  <sm-modal :shown.sync="appModal.shown" :header="appModal.header" @ok="saveApp">
     <form class="ui small form">
       <div class="field">
         <label>App Name</label>
-        <input type="text" name="name" v-model="appModel.AppName">
+        <input type="text" name="name" v-model="selectedApp.AppName">
       </div>
       <div class="field">
         <label>Callback Url</label>
-        <input type="text" name="CallbackUrl" v-model="appModel.CallbackUrl">
+        <input type="text" name="CallbackUrl" v-model="selectedApp.CallbackUrl">
       </div>
       <div class="field">
         <label>App Description</label>
-        <textarea name="description" v-model="appModel.AppDescription"></textarea>
+        <textarea name="description" v-model="selectedApp.AppDescription"></textarea>
       </div>
       <div class="field">
         <div class="ui slider checkbox">
-          <input type="checkbox" name="IsActive" v-model="appModel.IsActive">
+          <input type="checkbox" name="IsActive" v-model="selectedApp.IsActive">
           <label>Is Active</label>
         </div>
       </div>

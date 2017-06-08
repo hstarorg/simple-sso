@@ -17,4 +17,6 @@ router.get('/logout', indexBiz.getLogout);
 
 router.get('/apps', authBiz.mustLogin, indexBiz.getMyApps);
 
+router.get('/app/:appId', authBiz.mustLogin, indexBiz.getAppDetailPage);
+
 module.exports = router;

@@ -34,6 +34,7 @@
     "express": "^4.15.3",
     "express-art-template": "^1.0.0",
     "express-session": "^1.15.3",
+    "joi": "^10.5.2",
     "morgan": "~1.8.0",
     "mysql": "^2.13.0",
     "passport": "^0.3.2",
@@ -42,7 +43,8 @@
     "passport-wechat": "^2.0.4",
     "passport-weibo": "^0.1.2",
     "request": "^2.81.0",
-    "serve-favicon": "^2.4.3"
+    "serve-favicon": "^2.4.3",
+    "uuid": "^3.0.1"
   },
   "devDependencies": {
     "@types/jest": "^19.2.3",

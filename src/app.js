@@ -14,6 +14,7 @@ const cors = require('cors');
 const config = require('./config');
 const indexRouter = require('./routes/index');
 const authRouter = require('./routes/auth');
+const apiRouter = require('./routes/api');
 const passportHelper = require('./common/passportHelper');
 
 const app = express();
@@ -50,7 +51,7 @@ if (config.useRedis) {
     store: new RedisStore(config.redisOptions),
     resave: false,
     secret: config.sessionSecret,
-    saveUninitialized: true
+    saveUninitialized: false
   }));
 } else {
   app.use(session({
@@ -79,6 +80,7 @@ passportHelper.init(passport);
 // Load routers
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
+app.use('/api/v1', apiRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
