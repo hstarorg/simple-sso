@@ -4,22 +4,23 @@
 <!-- footer -->
 [[block 'footer']]
 <script>
-  document.querySelectorAll('.other-login-list .item a').forEach(el => {
-    el.addEventListener('click', function (e) {
-      e.preventDefault();
-      let href = e.target.getAttribute('href');
-      let win = window.open(href, '', 'width=500,height=500,channelmode=yes');
-      win.onclose = function () {
-        window.location.reload();
+  new Vue({
+    el: document.querySelector('.page-login'),
+    methods: {
+      openLoginWindow(href) {
+        let win = window.open(href, '', 'width=500,height=500,channelmode=yes');
+        win.onclose = function () {
+          window.location.reload();
+        }
       }
-    }, false);
+    },
   });
 
 </script>
 [[/block]]
 <!-- body -->
 [[block 'body']]
-<div class="ui main text container">
+<div class="ui main text container page-login">
   <div class="ui grid page center aligned">
     <div class="row">
       <div class="sixteen wide column">
@@ -61,33 +62,33 @@
                     <span class="sso-other-login">其他方式登录</span>
                   </div>
                   <div class="ui horizontal fluid list other-login-list">
-                    <div class="item">
-                      <a href="/auth/github" class="ui circular icon button">
+                    <div class="item" @click="openLoginWindow('/auth/github')">
+                      <a href="javascript:;" class="ui circular icon button">
                         <i class="github icon"></i>
                       </a>
                     </div>
-                    <div class="item">
-                      <a href="/auth/weibo" class="ui circular icon button">
+                    <div class="item" @click="openLoginWindow('/auth/weibo')">
+                      <a href="javascript:;" class="ui circular icon button">
                         <i class="weibo icon"></i>
                       </a>
                     </div>
-                    <div class="item">
-                      <a href="/auth/qq" class="ui circular icon button">
+                    <div class="item" @click="openLoginWindow('/auth/qq')">
+                      <a href="javascript:;" class="ui circular icon button">
                         <i class="qq icon"></i>
                       </a>
                     </div>
-                    <div class="item">
-                      <a href="/auth/wechat" class="ui circular icon button">
+                    <div class="item" @click="openLoginWindow('/auth/wechat')">
+                      <a href="javascript:;" class="ui circular icon button">
                         <i class="wechat icon"></i>
                       </a>
                     </div>
-                    <div class="item">
-                      <a href="/auth/google" class="ui circular icon button">
+                    <div class="item" @click="openLoginWindow('/auth/google')">
+                      <a href="javascript:;" class="ui circular icon button">
                         <i class="google icon"></i>
                       </a>
                     </div>
-                    <div class="item">
-                      <a href="/auth/windows" class="ui circular icon button">
+                    <div class="item" @click="openLoginWindow('/auth/windows')">
+                      <a href="javascript:;" class="ui circular icon button">
                         <i class="windows icon"></i>
                       </a>
                     </div>

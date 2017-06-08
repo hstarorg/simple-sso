@@ -46,21 +46,16 @@ app.use(cookieParser());
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
 app.use('/static', express.static(path.join(__dirname, '../static')));
 // Load session config
+let sessionOpt = {
+  secret: config.sessionSecret,
+  resave: false,
+  cookie: { maxAge: config.expires * 1000 },
+  saveUninitialized: false
+};
 if (config.useRedis) {
-  app.use(session({
-    store: new RedisStore(config.redisOptions),
-    resave: false,
-    secret: config.sessionSecret,
-    saveUninitialized: false
-  }));
-} else {
-  app.use(session({
-    secret: config.sessionSecret,
-    resave: false,
-    cookie: { maxAge: config.expires * 1000 },
-    saveUninitialized: false
-  }));
+  sessionOpt.store = new RedisStore(config.redisOptions);
 }
+app.use(session(sessionOpt));
 
 // passport授权
 // 授权
