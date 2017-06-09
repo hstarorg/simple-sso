@@ -48,7 +48,8 @@ module.exports = {
   },
 
   getLogout(req, res, next) {
-
+    req.logout();
+    res.redirect('/login');
   },
   getIndex,
   getLoginSuccess,
