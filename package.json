@@ -43,7 +43,6 @@
     "passport-qq": "0.0.3",
     "passport-wechat": "^2.0.4",
     "passport-weibo": "^0.1.2",
-    "passport-windowslive": "^1.0.2",
     "request": "^2.81.0",
     "serve-favicon": "^2.4.3",
     "uuid": "^3.0.1"

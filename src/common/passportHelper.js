@@ -2,15 +2,13 @@ const GitHubStrategy = require('passport-github').Strategy;
 const WeiboStrategy = require('passport-weibo').Strategy;
 const QQStrategy = require('passport-qq').Strategy;
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
-const WindowsLiveStrategy = require('passport-windowslive').Strategy;
 const config = require('./../config');
 
 const strategyMap = {
   github: GitHubStrategy,
   weibo: WeiboStrategy,
   qq: QQStrategy,
-  google: GoogleStrategy,
-  windowslive: WindowsLiveStrategy
+  google: GoogleStrategy
 };
 
 module.exports = {

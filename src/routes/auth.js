@@ -24,9 +24,4 @@ router.get('/google/callback', passport.authenticate('google', { failureRedirect
   res.redirect('/login_success');
 });
 
-router.get('/windows', passport.authenticate('windowslive'));
-router.get('/windows/callback', passport.authenticate('windowslive', { failureRedirect: '/login' }), authBiz.doLogin, (req, res, next) => {
-  res.redirect('/login_success');
-});
-
 module.exports = router;
