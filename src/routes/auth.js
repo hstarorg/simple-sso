@@ -19,7 +19,7 @@ router.get('/qq/callback', passport.authenticate('qq', { failureRedirect: '/logi
   res.redirect('/login_success');
 });
 
-router.get('/google', passport.authenticate('google'));
+router.get('/google', passport.authenticate('google', { scope: ['profile'] }));
 router.get('/google/callback', passport.authenticate('google', { failureRedirect: '/login' }), authBiz.doLogin, (req, res, next) => {
   res.redirect('/login_success');
 });
