@@ -36,6 +36,16 @@ module.exports = {
       appKey: '101395571',
       appSecret: 'xxx',
       callbackUrl: 'http://sso.hstar.org/auth/qq/callback'
+    },
+    google: {
+      appKey: 'xxx',
+      appSecret: 'xxx',
+      callbackUrl: 'http://sso.hstar.org/auth/google/callback'
+    },
+    windowslive: {
+      appKey: 'xxx',
+      appSecret: 'xxx',
+      callbackUrl: 'http://sso.hstar.org/auth/windowslive/callback'
     }
   }
 };
