@@ -85,8 +85,9 @@ const getUserInfo = (req, res, next) => {
       if (app.AppSecret !== data.appSecret) {
         return next(new Error('App secret invalid, please check.'));
       }
-      let user = codeStore.get(data.code);
-      codeStore.delete(data.code);
+      let key = `${app.AppKey}|${data.code}`;
+      let user = codeStore.get(key);
+      codeStore.delete(key);
       if (!user) {
         return next(new Error('Invalid code.'));
       }

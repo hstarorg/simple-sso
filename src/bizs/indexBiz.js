@@ -24,7 +24,7 @@ const getIndex = (req, res, next) => {
     .then(app => {
       if (app) {
         let code = util.buildCode();
-        codeStore.set(code, req.items.user);
+        codeStore.set(`${app.AppKey}|${code}`, req.items.user);
         return res.redirect(`${app.CallbackUrl}?code=${code}`);
       }
       res.render('index', Object.assign({ UnionId: unionId }, { data: req.items.user }));
@@ -49,27 +49,36 @@ const getAppDetailPage = (req, res, next) => {
   res.render('app-detail', { appId });
 };
 
+const getLogin = (req, res, next) => {
+  res.render('login');
+};
+
+const getLogout = (req, res, next) => {
+  req.logout();
+  let redirectUrl = req.query.redirectUrl;
+  res.redirect(redirectUrl || '/login');
+};
+
+const getSignup = (req, res, next) => {
+  res.render('signup');
+};
+
+
+const doLogin = (req, res, next) => {
+  res.redirect('/');
+};
+
+
+const doSignup = (req, res, next) => {
+
+};
+
 module.exports = {
-  getLogin(req, res, next) {
-    res.render('login');
-  },
-
-  doLogin(req, res, next) {
-    res.redirect('/');
-  },
-
-  getSignup(req, res, next) {
-    res.render('signup');
-  },
-
-  doSignup(req, res, next) {
-
-  },
-
-  getLogout(req, res, next) {
-    req.logout();
-    res.redirect('/login');
-  },
+  getLogin,
+  getLogout,
+  getSignup,
+  doLogin,
+  doSignup,
   getIndex,
   getLoginSuccess,
   getMyApps,
