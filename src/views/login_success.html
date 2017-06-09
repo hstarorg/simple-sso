@@ -1,6 +1,6 @@
 <script>
   if(window.opener){
-    window.opener.location = '/';
+    window.opener.location = '/' + window.opener.location.search;
   }
   window.close();
 </script>

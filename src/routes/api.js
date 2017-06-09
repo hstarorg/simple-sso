@@ -16,4 +16,6 @@ router.put('/app/:appId', authBiz.mustLogin, apiBiz.updateApp);
 
 router.delete('/app/:appId', authBiz.mustLogin, apiBiz.deleteApp);
 
+router.post('/get_user_info', apiBiz.getUserInfo);
+
 module.exports = router;

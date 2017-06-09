@@ -1,6 +1,7 @@
 const config = require('../config');
 const db = require('../common/db');
 const sqlManager = require('../models/sqlManager');
+const codeStore = require('../common/codeStore');
 const util = require('../common/util');
 
 const getApps = (req, res, next) => {
@@ -73,11 +74,33 @@ const refreshSecret = (req, res, next) => {
     .catch(next);
 };
 
+const getUserInfo = (req, res, next) => {
+  let data = req.body;
+  console.log(data);
+  db.queryScalar(sqlManager.QUERY_APP_BY_KEY, [data.appKey])
+    .then(app => {
+      if (!app) {
+        return next(new Error('App key invalid, please check.'));
+      }
+      if (app.AppSecret !== data.appSecret) {
+        return next(new Error('App secret invalid, please check.'));
+      }
+      let user = codeStore.get(data.code);
+      codeStore.delete(data.code);
+      if (!user) {
+        return next(new Error('Invalid code.'));
+      }
+      res.send(user);
+    })
+    .catch(next);
+};
+
 module.exports = {
   getApps,
   createApp,
   updateApp,
   deleteApp,
   getAppById,
-  refreshSecret
+  refreshSecret,
+  getUserInfo
 };

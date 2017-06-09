@@ -6,5 +6,8 @@ module.exports = {
   },
   buildAppSecret() {
     return (uuid.v4() + uuid.v4()).replace(/-/g, '');
+  },
+  buildCode() {
+    return uuid.v4().replace(/-/g, '');
   }
 };

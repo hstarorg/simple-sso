@@ -51,5 +51,10 @@ WHERE Id = ?;
 UPDATE SsoApplication
 SET AppSecret = ?
 WHERE Id = ?
+  `,
+  QUERY_APP_BY_KEY: `
+SELECT Id, AppName, AppDescription, AppKey, AppSecret, CallbackUrl, AppStatus, CreateBy, CreateDate
+FROM SsoApplication t1
+WHERE t1.AppKey= ?;
   `
 };
