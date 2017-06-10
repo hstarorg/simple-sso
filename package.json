@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "gulp4 dev",
+    "dist": "gulp4 dist",
     "test": "jest"
   },
   "repository": {

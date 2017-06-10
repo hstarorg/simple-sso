@@ -10,6 +10,8 @@ const webpack = require('webpack');
 const util = require('./build/util');
 const webpackConfig = require('./build/webpack.config');
 
+let isRelease = false;
+
 const notify = message => {
   return done => {
     notifier.notify({
@@ -46,12 +48,22 @@ gulp.task('copy', () => {
 gulp.task('css', () => {
   return gulp.src('./src/assets/css/all.styl')
     .pipe(stylus({
-      'include css': true
+      'include css': true,
+      compress: isRelease
     }))
     .pipe(gulp.dest('dist/assets/css'));
 });
 
 gulp.task('js', done => {
+  if (isRelease) {
+    webpackConfig.plugins.push(
+      new webpack.optimize.UglifyJsPlugin({
+        compress: {
+          warnings: false
+        }
+      })
+    );
+  }
   const compiler = webpack(webpackConfig);
   compiler.watch({ aggregateTimeout: 500, poll: false, ignored: [/node_modules/] }, (err, stats) => {
     util.showWebpackError(err, stats);
@@ -112,4 +124,24 @@ gulp.task('dev', gulp.series(
   'js',
   gulp.parallel('serve', 'watch'),
   'open'
+));
+
+gulp.task('setRelease', done => {
+  isRelease = true;
+  done();
+});
+
+gulp.task('installDep', done => {
+  cp('package.json', 'dist/package.json');
+  cd('dist');
+  exec('npm i --production');
+  done();
+});
+
+gulp.task('dist', gulp.series(
+  'setRelease',
+  'clean',
+  'build',
+  'js',
+  'installDep'
 ));
