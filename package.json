@@ -47,6 +47,7 @@
     "passport-weibo": "^0.1.2",
     "request": "^2.81.0",
     "serve-favicon": "^2.4.3",
+    "spdy": "^3.4.7",
     "uuid": "^3.0.1"
   },
   "devDependencies": {
