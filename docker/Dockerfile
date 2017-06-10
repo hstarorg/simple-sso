@@ -1,4 +1,4 @@
-FROM nginx:8.1.0-alpine
+FROM node:8.1.0-alpine
 
 MAINTAINER hstarorg hm910705@163.com
 
@@ -10,6 +10,6 @@ ENTRYPOINT ["/usr/local/bin/dumb-init", "--"]
 
 WORKDIR /dist
 
-EXPOSE 5001
+EXPOSE 5000
 
 CMD ["node", "index.js"]

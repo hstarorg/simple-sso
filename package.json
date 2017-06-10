@@ -36,6 +36,7 @@
     "express-art-template": "^1.0.0",
     "express-session": "^1.15.3",
     "joi": "^10.5.2",
+    "lru-cache": "^4.1.0",
     "morgan": "~1.8.0",
     "mysql": "^2.13.0",
     "passport": "^0.3.2",
