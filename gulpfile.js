@@ -4,11 +4,12 @@ const developServer = require('gulp-develop-server');
 const notifier = require('node-notifier');
 const lightReload = require('light-reload');
 const newer = require('gulp-newer');
-const stylus = require('gulp-stylus');
+const concat = require('gulp-concat');
 const webpack = require('webpack');
 
 const util = require('./build/util');
 const webpackConfig = require('./build/webpack.config');
+const assets = require('./build/assets.json');
 
 let isRelease = false;
 const destFolder = 'dist';
@@ -44,18 +45,25 @@ gulp.task('copy', () => {
     .pipe(gulp.dest(destFolder));
 });
 
-gulp.task('css', () => {
-  return gulp.src('./src/assets/css/all.styl')
-    .pipe(stylus({
-      'include css': true,
-      compress: isRelease
-    }))
-    .on('error', function (err) {
-      console.error(err);
-      this.emit('end');
-    })
+gulp.task('vendor.js', () => {
+  return gulp.src(assets[isRelease ? 'vendor.js-min' : 'vendor.js'])
+    .pipe(concat('vendor.js', { newLine: ';\n' }))
+    .pipe(gulp.dest('dist/assets/js'));
+});
+
+gulp.task('vendor.css', () => {
+  return gulp.src(assets[isRelease ? 'vendor.css-min' : 'vendor.css'])
+    .pipe(concat('vendor.css', { newLine: '\n\n' }))
     .pipe(gulp.dest('dist/assets/css'));
 });
+
+gulp.task('vendor.fonts', () => {
+  return gulp.src(assets['vendor.fonts'])
+    .pipe(gulp.dest('dist/assets/font'));
+});
+
+gulp.task('vendor', gulp.parallel('vendor.js', 'vendor.css', 'vendor.fonts'));
+
 
 gulp.task('js', done => {
   if (isRelease) {
@@ -75,7 +83,7 @@ gulp.task('js', done => {
   });
 });
 
-gulp.task('build', gulp.parallel('copy', 'css'));
+gulp.task('build', gulp.parallel('copy', 'vendor', 'js'));
 
 gulp.task('serve', done => {
   lightReload.init();
@@ -109,10 +117,6 @@ gulp.task('watch', done => {
     'src/views/**'
   ], gulp.series('copy', refresh));
 
-  gulp.watch([
-    'src/assets/css/**/*'
-  ], gulp.series('css', refresh));
-
   done();
 });
 
@@ -123,6 +127,7 @@ gulp.task('open', done => {
 
 gulp.task('dev', gulp.series(
   'clean',
+  'vendor',
   'build',
   'js',
   gulp.parallel('serve', 'watch'),
