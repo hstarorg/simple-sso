@@ -1,5 +1,5 @@
 # simple-sso
-A simple  single sign on project.
+A simple SSO(single sign on) project.
 
 # Develop
 
@@ -12,6 +12,12 @@ npm i
 
 # Start application
 npm run dev
+
+# Build
+npm run dist
+
+# Run test
+npm run test
 ```
 
 # Change Log
