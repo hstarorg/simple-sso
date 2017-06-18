@@ -10,7 +10,7 @@ const getIndex = (req, res, next) => {
   if (!req.user) {
     return res.redirect(loginUrl);
   }
-  let unionId = req.session.user.UnionId;
+  let unionId = req.session.ssoUser.UnionId;
   db.queryScalar(sqlManager.QUERY_USER_INFO_BY_ID, [unionId])
     .then(user => {
       req.items = { user };
@@ -37,7 +37,7 @@ const getLoginSuccess = (req, res, next) => {
 };
 
 const getMyApps = (req, res, next) => {
-  let unionId = req.session.user.UnionId;
+  let unionId = req.session.ssoUser.UnionId;
   db.query(sqlManager.QUERY_MY_APP_LIST, [unionId])
     .then(apps => {
       res.render('apps', Object.assign({}, { UnionId: unionId }, { data: apps }));

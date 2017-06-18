@@ -5,7 +5,7 @@ const codeStore = require('../common/codeStore');
 const util = require('../common/util');
 
 const getApps = (req, res, next) => {
-  let unionId = req.session.user.UnionId;
+  let unionId = req.session.ssoUser.UnionId;
   db.query(sqlManager.QUERY_MY_APP_LIST, [unionId])
     .then(apps => {
       res.send(apps);
@@ -26,7 +26,7 @@ const getAppById = (req, res, next) => {
 };
 
 const createApp = (req, res, next) => {
-  let unionId = req.session.user.UnionId;
+  let unionId = req.session.ssoUser.UnionId;
   let data = req.body;
   db.query(sqlManager.CREATE_SSO_APPLICATION, [
     data.AppName, data.AppDescription,
@@ -40,7 +40,7 @@ const createApp = (req, res, next) => {
 };
 
 const updateApp = (req, res, next) => {
-  let unionId = req.session.user.UnionId;
+  let unionId = req.session.ssoUser.UnionId;
   let data = req.body;
   let appId = req.params.appId;
   db.query(sqlManager.UPDATE_SSO_APPLICATION, [
@@ -55,7 +55,7 @@ const updateApp = (req, res, next) => {
 };
 
 const deleteApp = (req, res, next) => {
-  let unionId = req.session.user.UnionId;
+  let unionId = req.session.ssoUser.UnionId;
   let appId = req.params.appId;
   db.query(sqlManager.DELETE_SSO_APPLICATION, [appId])
     .then(data => {
