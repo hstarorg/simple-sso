@@ -12,7 +12,7 @@
     "static/layui/css/layer.css",
     "static/iconfont/css/iconfont.css"
   ],
-  "vendor.css.min": [
+  "vendor.css-min": [
     "static/layui/css/layui.min.css",
     "static/layui/css/layer.min.css",
     "static/iconfont/css/iconfont.min.css"
