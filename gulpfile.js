@@ -11,6 +11,7 @@ const util = require('./build/util');
 const webpackConfig = require('./build/webpack.config');
 
 let isRelease = false;
+const destFolder = 'dist';
 
 const notify = message => {
   return done => {
@@ -28,8 +29,6 @@ const refresh = done => {
     done && done();
   }, 500);
 };
-
-const destFolder = 'dist';
 
 gulp.task('clean', done => {
   rm('-rf', 'dist');
@@ -51,6 +50,10 @@ gulp.task('css', () => {
       'include css': true,
       compress: isRelease
     }))
+    .on('error', function (err) {
+      console.error(err);
+      this.emit('end');
+    })
     .pipe(gulp.dest('dist/assets/css'));
 });
 
