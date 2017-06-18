@@ -101,14 +101,14 @@ const doLogin = (req, res, next) => {
       if (result && result.hasError) {
         return next(result.error);
       }
-      req.session.user = result;
+      req.session.ssoUser = result;
       next();
     })
     .catch(next);
 };
 
 const mustLogin = (req, res, next) => {
-  if (req.session && req.session.user) {
+  if (req.session && req.session.ssoUser) {
     return next();
   }
   res.redirect('/login');

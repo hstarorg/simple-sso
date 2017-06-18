@@ -54,6 +54,9 @@ const getLogin = (req, res, next) => {
 };
 
 const getLogout = (req, res, next) => {
+  if (req.session) {
+    req.session.ssoUser = null;
+  }
   req.logout();
   let redirectUrl = req.query.redirectUrl;
   res.redirect(redirectUrl || '/login');
