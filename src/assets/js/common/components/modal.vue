@@ -1,56 +1,90 @@
 <template>
-  <div class="ui dimmer modals page transition fade sm-modal" :class="{active: shown}">
-    <div class="ui standard modal transition scrolling fade" :class="[animate, {active: shown, in: shown, out: !shown || animating}]"
-      :style="{width: width + 'px'}">
-      <i class="close icon" v-if="closable" @click="onCancelClick"></i>
-      <div class="header">
-        <slot name="modal-header">
-          {{header}}
-        </slot>
+  <div class="lv-modal" v-show="modalShown">
+    <div class="layui-layer-shade" style="z-index:100000; background-color:#000; opacity:0.3; filter:alpha(opacity=30);"></div>
+    <div class="layui-layer layui-layer-page layui-layer-rim layer-anim" :style="modalStyle">
+      <div class="layui-layer-title" style="cursor: move;">
+        <slot name="header">{{header}}</slot>
       </div>
-      <div class="content">
+      <div class="layui-layer-content">
         <slot></slot>
       </div>
-      <div class="actions">
-        <slot name="modal-actions">
-          <div class="ui button deny cancel" @click="onCancelClick">{{cancelText}}</div>
-          <div class="ui positive right labeled icon button" @click="onOkClick">
-            {{okText}}
-            <i class="checkmark icon"></i>
-          </div>
+      <span class="layui-layer-setwin">
+        <a class="layui-layer-ico layui-layer-close layui-layer-close1" href="javascript:;" @click="doClose()"></a>
+      </span>
+      <div class="layui-layer-btn layui-layer-btn-">
+        <slot name="footer">
+          <a class="layui-layer-btn0" @click="doOk">确定</a>
+          <a class="layui-layer-btn1" @click="doClose(true)">取消</a>
         </slot>
       </div>
+      <span class="layui-layer-resize"></span>
     </div>
   </div>
 </template>
 <script>
+  import { domUtil } from './../utils';
   export default {
-    name: 'sm-modal',
+    name: 'lv-modal',
     props: {
-      shown: null,
       header: { type: String, default: '' },
-      width: { type: Number, default: 500 },
-      okText: { type: String, default: 'OK' },
-      cancelText: { type: String, default: 'Cancel' },
-      closable: { type: Boolean, default: true },
-      animate: { type: String, default: 'horizontal' }
+      width: { type: Number, default: 600 },
+      value: { type: Boolean, default: false }
     },
     data() {
       return {
-        animating: false
+        modalShown: false,
+        modalStyle: {
+          'z-index': 100001,
+          'min-height': '260px',
+          width: '600px',
+          top: 'auto',
+          left: 'auto'
+        },
+        events: []
       };
     },
-    methods: {
-      onCancelClick() {
-        this.animating = true;
-        setTimeout(() => {
-          this.$emit('update:shown', false);
-          this.animating = false;
-        }, 400);
-        this.$emit('cancel');
+    mounted() {
+      this.modalShown = this.value === true;
+      this.calcModalStyle();
+      let evtObj = domUtil.bindEvent(window, 'resize', () => {
+        this.calcModalStyle();
+      });
+      this.events.push(evtObj);
+    },
+    beforeDestroy() {
+      this.events.forEach(e => e.destroy());
+    },
+    watch: {
+      value(newVal) {
+        this.modalShown = newVal;
+        if (newVal) {
+          this.calcModalStyle();
+        }
       },
-      onOkClick() {
+      width(newVal) {
+        this.calcModalStyle();
+      }
+    },
+    methods: {
+      calcModalStyle(stop) {
+        this.modalStyle.width = `${this.width}px`;
+        let modalEl = this.$el.querySelector('.layui-layer-page');
+        let size = domUtil.getSize(modalEl);
+        this.modalStyle.left = `${(window.innerWidth - size.width) / 2}px`;
+        this.modalStyle.top = `${(window.innerHeight - size.height) / 2}px`;
+        if (!stop) {
+          this.$nextTick(() => {
+            this.calcModalStyle(true);
+          });
+        }
+      },
+      doOk() {
         this.$emit('ok');
+      },
+      doClose(isCancel) {
+        this.modalShown = false;
+        this.$emit('input', false);
+        this.$emit(isCancel ? 'cancel' : 'close');
       }
     }
   };

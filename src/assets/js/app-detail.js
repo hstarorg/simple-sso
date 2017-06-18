@@ -1,5 +1,5 @@
 new Vue({
-  el: document.querySelector('.page-apps'),
+  el: document.querySelector('.page-app-detail'),
   data: {
     selectedApp: {}
   },

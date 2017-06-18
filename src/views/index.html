@@ -1,45 +1,64 @@
 [[extend './shared/_layout.html']]
 <!-- title -->
-[[block 'title']]Index[[/block]]
+[[block 'title']]欢迎您[[/block]]
 <!-- body -->
 [[block 'body']]
-<div class="ui main text container page-index">
-  <div class="ui card">
-    <div class="content">
-      <img class="ui avatar image" title="[[data.UnionId]]" src="[[data.AvatarUrl]]"> [[DisplayName]]
-      <div class="right floated">
-        <a class="ui labeld icon compact mini right floated button" href="/logout">Logout <i class="arrow circle right icon"></i></a>
-      </div>
-    </div>
-    <div class="image">
-      <img src="[[data.AvatarUrl]]">
-    </div>
-    <div class="content">
-      <div>
-        <span>UserName: [[data.UserName]]</span>
-      </div>
-      <div>
-        <span>Is External User: [[data.IsExternalUser === 1 ? 'Yes': 'No']]</span>
-      </div>
-      <div>
-        <span>Email Address: [[data.EmailAddress]]</span>
-      </div>
-      <div>
-        <span>Phone Number: [[data.PhoneNumber]]</span>
-      </div>
-      <div>
-        <span>Gender: [[data.Gender]]</span>
-      </div>
-      <div>
-        <span>Location: [[data.Location]]</span>
-      </div>
-      <div>
-        <span>Create Date: [[data.CreateDate.toLocaleDateString()]]</span>
-      </div>
-      <div>
-        <span>Last Update Date: [[data.LastUpdateDate.toLocaleDateString()]]</span>
-      </div>
-    </div>
+<div class="page-index">
+  <div class="user-card">
+    <table class="layui-table" lay-even="" lay-skin="row">
+      <colgroup>
+        <col width="200">
+        <col width="200">
+      </colgroup>
+      <tbody>
+        <tr>
+          <td colspan="2" class="user-avatar">
+            <img title="[[data.UnionId]]" src="[[data.AvatarUrl]]">
+          </td>
+        </tr>
+        <tr>
+          <td class="text-right">UserName</td>
+          <td>[[data.UserName]]</td>
+        </tr>
+        <tr>
+          <td class="text-right">DisplayName</td>
+          <td>[[data.DisplayName]]</td>
+        </tr>
+        <tr>
+          <td class="text-right">Is External User</td>
+          <td>[[data.IsExternalUser === 1 ? 'Yes': 'No']]</td>
+        </tr>
+        <tr>
+          <td class="text-right">Email Address</td>
+          <td>[[data.EmailAddress]]</td>
+        </tr>
+        <tr>
+          <td class="text-right">Phone Number</td>
+          <td>[[data.PhoneNumber]]</td>
+        </tr>
+        <tr>
+          <td class="text-right">Gender</td>
+          <td>[[data.Gender]]</td>
+        </tr>
+        <tr>
+          <td class="text-right">Location</td>
+          <td>[[data.Location]]</td>
+        </tr>
+        <tr>
+          <td class="text-right">Create Date</td>
+          <td>[[data.CreateDate.toLocaleDateString()]]</td>
+        </tr>
+        <tr>
+          <td class="text-right">Last Update Date</td>
+          <td>[[data.LastUpdateDate.toLocaleDateString()]]</td>
+        </tr>
+        <tr>
+          <td colspan="2" class="text-center">
+            <a class="layui-btn layui-btn-danger" href="/logout">注销登录</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>
 [[/block]]

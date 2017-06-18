@@ -3,20 +3,7 @@
 [[block 'title']]用户登录[[/block]] [[block 'header']] [[/block]]
 <!-- footer -->
 [[block 'footer']]
-<script>
-  new Vue({
-    el: document.querySelector('.page-login'),
-    methods: {
-      openLoginWindow(href) {
-        let win = window.open(href, '', 'width=500,height=500,channelmode=yes');
-        win.onclose = function () {
-          window.location.reload();
-        }
-      }
-    },
-  });
-
-</script>
+<script src="assets/js/login.js"></script>
 [[/block]]
 <!-- body -->
 [[block 'body']]
@@ -39,8 +26,7 @@
       </div>
       <div class="layui-form-item">
         <div class="layui-input-block">
-          <input type="checkbox" lay-skin="primary" title="记住我" checked="">
-          <div class="layui-unselect layui-form-checkbox" lay-skin="primary"><span>记住我</span><i class="layui-icon"></i></div>
+          <lv-checkbox v-model="rememberMe">记住我</lv-checkbox>
           <a href="/password/new" class="float-right forget-password">忘记密码?</a>
         </div>
       </div>

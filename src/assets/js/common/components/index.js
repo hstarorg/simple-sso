@@ -1,5 +1,9 @@
-import modal from './modal.vue';
+import Modal from './modal.vue';
+import Checkbox from './checkbox.vue';
+import Switch from './switch.vue';
 
 export const COMPONENTS = [
-  modal
+  Modal,
+  Checkbox,
+  Switch
 ];

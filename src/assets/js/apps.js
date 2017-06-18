@@ -21,6 +21,7 @@ new Vue({
     showAppModal(app) {
       if (app) { // Edit
         Object.keys(this.selectedApp).forEach(key => this.selectedApp[key] = app[key]);
+        this.appModal.header = 'Update App Info';
         this.selectedApp.IsActive = app.AppStatus == 'Active';
       } else {
         this._resetAppModel();

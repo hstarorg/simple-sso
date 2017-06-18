@@ -7,7 +7,8 @@ module.exports = {
     common: util.root('src/assets/js/common/index.js'),
     config: util.root('src/assets/js/config.js'),
     apps: util.root('src/assets/js/apps.js'),
-    'app-detail': util.root('src/assets/js/app-detail.js')
+    'app-detail': util.root('src/assets/js/app-detail.js'),
+    'login': util.root('src/assets/js/login.js')
   },
   output: {
     path: util.root('dist/assets'),

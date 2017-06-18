@@ -10,66 +10,85 @@
 [[/block]]
 <!-- body -->
 [[block 'body']]
-<div class="ui main container page-apps">
-  <table class="ui sortable celled striped selectable black very compact table">
-    <thead>
-      <tr>
-        <th colspan="6" style="line-height: 26px;">
-          SSO Applications
-          <button class="ui labeled icon compact mini right floated button" @click="showAppModal()">
-            <i class="plus icon"></i> Create App
-          </button>
-        </th>
-      </tr>
-      <tr>
-        <th class="collapsing"><i class="heartbeat icon"></i></th>
-        <th>Name</th>
-        <th style="width: 300px;">App Key</th>
-        <th>Description</th>
-        <th class="collapsing">Status</th>
-        <th>Operate</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr v-if="appList.length === 0">
-        <td colspan="6" class="text center">No apps.</td>
-      </tr>
-      <tr v-for="(app, idx) in appList">
-        <td>{{idx+1}}</td>
-        <td>
-          <a :href="'/app/' + app.Id">{{app.AppName}}</a>
-        </td>
-        <td>{{app.AppKey}}</td>
-        <td>{{app.AppDescription}}</td>
-        <td>{{app.AppStatus}}</td>
-        <td class="collapsing align center">
-          <div title="Edit APP" class="basic compact mini blue ui icon button" @click="showAppModal(app)"><i class="edit icon"></i></div>
-          <div title="Delete APP" class="basic compact mini blue ui icon button" @click="confrimDeleteApp(app)"><i class="minus icon"></i></div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <sm-modal :shown.sync="appModal.shown" :header="appModal.header" @ok="saveApp">
-    <form class="ui small form">
-      <div class="field">
-        <label>App Name</label>
-        <input type="text" name="name" v-model="selectedApp.AppName">
+<div class="page-apps">
+  <div class="container">
+    <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+      <ul class="layui-tab-title">
+        <li class="layui-this">SSO Applications</li>
+      </ul>
+      <div class="layui-tab-content">
+        <div class="layui-tab-item layui-show">
+          <button class="layui-btn layui-btn-small float-right" @click="showAppModal()">Create App</button>
+        </div>
+        <div class="clearfix"></div>
       </div>
-      <div class="field">
-        <label>Callback Url</label>
-        <input type="text" name="CallbackUrl" v-model="selectedApp.CallbackUrl">
+    </div>
+    <table class="layui-table app-list-table" lay-skin="line">
+      <colgroup>
+        <col width="50">
+        <col width="250">
+        <col width="300">
+        <col />
+        <col width="100">
+        <col width="120">
+      </colgroup>
+      <thead>
+        <tr>
+          <th>Idx</th>
+          <th>Name</th>
+          <th>App Key</th>
+          <th>Description</th>
+          <th class="text-center">Status</th>
+          <th class="text-center">Operate</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-if="appList.length === 0">
+          <td colspan="6" class="text-center">No apps.</td>
+        </tr>
+        <tr v-for="(app, idx) in appList">
+          <td>{{idx+1}}</td>
+          <td>
+            <a :href="'/app/' + app.Id">{{app.AppName}}</a>
+          </td>
+          <td>{{app.AppKey}}</td>
+          <td>{{app.AppDescription}}</td>
+          <td>{{app.AppStatus}}</td>
+          <td class="text-center">
+            <button title="Edit APP" class="layui-btn layui-btn-mini layui-btn-normal" @click="showAppModal(app)">Edit</button>
+            <button title="Delete APP" class="layui-btn layui-btn-mini layui-btn-danger" @click="confrimDeleteApp(app)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <lv-modal v-model="appModal.shown" :header="appModal.header" @ok="saveApp">
+    <form class="layui-form" style="padding: 10px;">
+      <div class="layui-form-item">
+        <label class="layui-form-label">App Name</label>
+        <div class="layui-input-block">
+          <input type="text" name="name" v-model="selectedApp.AppName" class="layui-input">
+        </div>
       </div>
-      <div class="field">
-        <label>App Description</label>
-        <textarea name="description" v-model="selectedApp.AppDescription"></textarea>
+      <div class="layui-form-item">
+        <label class="layui-form-label">Callback Url</label>
+        <div class="layui-input-block">
+          <input type="text" name="CallbackUrl" v-model="selectedApp.CallbackUrl" class="layui-input">
+        </div>
       </div>
-      <div class="field">
-        <div class="ui slider checkbox">
-          <input type="checkbox" name="IsActive" v-model="selectedApp.IsActive">
-          <label>Is Active</label>
+      <div class="layui-form-item">
+        <label class="layui-form-label">Description</label>
+        <div class="layui-input-block">
+          <textarea name="description" v-model="selectedApp.AppDescription" class="layui-textarea"></textarea>
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">Is Active</label>
+        <div class="layui-input-block">
+          <lv-switch v-model="selectedApp.IsActive" name="IsActive"></lv-switch>
         </div>
       </div>
     </form>
-  </sm-modal>
+  </lv-modal>
 </div>
 [[/block]]
