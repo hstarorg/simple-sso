@@ -1,6 +1,6 @@
 [[extend './shared/_layout.html']]
 <!-- title -->
-[[block 'title']]用户登录[[/block]]
+[[block 'title']]用户登录[[/block]] [[block 'header']] [[/block]]
 <!-- footer -->
 [[block 'footer']]
 <script>
@@ -20,81 +20,56 @@
 [[/block]]
 <!-- body -->
 [[block 'body']]
-<div class="ui main text container page-login">
-  <div class="ui grid page center aligned">
-    <div class="row">
-      <div class="sixteen wide column">
-        <form action="/login" class="left aligned ui form flat segment" method="post">
-          <header class="login-header">
-            <div>
-              <i class="user icon"></i>
-              <span>登录</span>
-            </div>
-            <span class="float-right register"><a href="/signup">注册</a></span>
-          </header>
-          <div class="ui grid">
-            <div class="row">
-              <div class="twelve wide centered column">
-                <div class="field">
-                  <input name="username" placeholder="请输入账户" size="30" type="text">
-                </div>
-                <div class="field">
-                  <input name="password" placeholder="密码不少于6位" size="30" type="password">
-                </div>
-                <div class="two fields">
-                  <div class="field">
-                    <div class="ui checkbox">
-                      <input id="remember" type="checkbox" name="remember">
-                      <label for="remember" style="cursor: pointer;">记住我</label>
-                    </div>
-                  </div>
-                  <div class="field" style="text-align: right">
-                    <a href="/password/new" class="forget-password">忘记密码?</a>
-                  </div>
-                </div>
-                <div class="field">
-                  <button class="fluid ui orange right labeled icon button">
-                    <i class="right arrow icon"></i>  登 录
-                  </button>
-                </div>
-                <div class="field">
-                  <div class="ui horizontal divider header">
-                    <span class="sso-other-login">其他方式登录</span>
-                  </div>
-                  <div class="ui horizontal fluid list other-login-list">
-                    <div class="item" @click="openLoginWindow('/auth/github')">
-                      <a href="javascript:;" class="ui circular icon button">
-                        <i class="github icon"></i>
-                      </a>
-                    </div>
-                    <div class="item" @click="openLoginWindow('/auth/weibo')">
-                      <a href="javascript:;" class="ui circular icon button">
-                        <i class="weibo icon"></i>
-                      </a>
-                    </div>
-                    <div class="item" @click="openLoginWindow('/auth/qq')">
-                      <a href="javascript:;" class="ui circular icon button">
-                        <i class="qq icon"></i>
-                      </a>
-                    </div>
-                    <div class="item" @click="openLoginWindow('/auth/wechat')">
-                      <a href="javascript:;" class="ui circular icon button">
-                        <i class="wechat icon"></i>
-                      </a>
-                    </div>
-                    <!--<div class="item" @click="openLoginWindow('/auth/google')">
-                      <a href="javascript:;" class="ui circular icon button">
-                        <i class="google icon"></i>
-                      </a>
-                    </div>-->
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </form>
-      </div>
+<div class="page-login">
+  <div class="login-box">
+    <div class="login-header">
+      <span>SSO 登录</span>
+      <a href="/signup" class="float-right register-link">注册</a>
     </div>
+    <form class="layui-form">
+      <div class="layui-form-item">
+        <div class="layui-input-block">
+          <input type="text" name="title" placeholder="请输入账户" size="30" class="layui-input">
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <div class="layui-input-block">
+          <input type="text" name="username" placeholder="密码不少于6位" size="30" class="layui-input">
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <div class="layui-input-block">
+          <input type="checkbox" lay-skin="primary" title="记住我" checked="">
+          <div class="layui-unselect layui-form-checkbox" lay-skin="primary"><span>记住我</span><i class="layui-icon"></i></div>
+          <a href="/password/new" class="float-right forget-password">忘记密码?</a>
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <button class="layui-btn layui-btn-radius btn-login">登录</button>
+      </div>
+      <div class="layui-form-item">
+        <div class="other-login-divider">
+          <span class="sso-other-login">其他方式登录</span>
+        </div>
+      </div>
+      <div class="layui-form-item text-center other-login-btns">
+        <button type="button" class="layui-btn layui-btn-primary layui-btn-radius" title="Github登录" @click="openLoginWindow('/auth/github')">
+          <i class="iconfont icon-github"></i>
+        </button>
+        <button type="button" class="layui-btn layui-btn-primary layui-btn-radius" title="微博登录" @click="openLoginWindow('/auth/weibo')">
+          <i class="iconfont icon-weibo"></i>
+        </button>
+        <button type="button" class="layui-btn layui-btn-primary layui-btn-radius" title="QQ登录" @click="openLoginWindow('/auth/qq')">
+          <i class="iconfont icon-QQ"></i>
+        </button>
+        <button type="button" class="layui-btn layui-btn-primary layui-btn-radius" title="微信登录" @click="openLoginWindow('/auth/wechat')">
+          <i class="iconfont icon-wechat"></i>
+        </button>
+        <button type="button" class="layui-btn layui-btn-primary layui-btn-radius" title="Google登录" @click="openLoginWindow('/auth/google')">
+          <i class="iconfont icon-google"></i>
+        </button>
+      </div>
+    </form>
   </div>
 </div>
 [[/block]]

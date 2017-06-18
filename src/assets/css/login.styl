@@ -1,0 +1,103 @@
+$before-after-common {
+  content: '';
+  display: table-cell;
+  position: relative;
+  top: 50%;
+  width: 50%;
+  background-repeat: no-repeat;
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABaAAAAACCAYAAACuTHuKAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyFpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChXaW5kb3dzKSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDo1OThBRDY4OUNDMTYxMUU0OUE3NUVGOEJDMzMzMjE2NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDo1OThBRDY4QUNDMTYxMUU0OUE3NUVGOEJDMzMzMjE2NyI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjU5OEFENjg3Q0MxNjExRTQ5QTc1RUY4QkMzMzMyMTY3IiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU5OEFENjg4Q0MxNjExRTQ5QTc1RUY4QkMzMzMyMTY3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+VU513gAAADVJREFUeNrs0DENACAQBDBIWLGBJQby/mUcJn5sJXQmOQMAAAAAAJqt+2prAAAAAACg2xdgANk6BEVuJgyMAAAAAElFTkSuQmCC');
+}
+
+.page-login {
+  padding-top: 100px;
+
+  .login-box {
+    width: 450px;
+    margin: 0 auto;
+    border: 1px solid rgba(34, 36, 38, 0.15);
+    box-shadow: 0 1px 2px 0 rgba(34, 36, 38, 0.15);
+    border-radius: 4px;
+
+    .layui-form {
+      width: 76%;
+      margin-left: 12%;
+
+      .layui-input-block {
+        margin-left: 0;
+      }
+
+      .forget-password {
+        line-height: 36px;
+      }
+
+      .btn-login {
+        background: #1b1c1d;
+        width: 100%;
+      }
+    }
+
+    .login-header {
+      padding: 24px;
+
+      span {
+        font-size: 20px;
+      }
+
+      .register-link {
+        line-height: 26px;
+        color: #E66700;
+      }
+    }
+
+    .other-login-divider {
+      display: table;
+      white-space: nowrap;
+
+      &::before {
+        background-position: right 1em top 50%;
+        @extend $before-after-common;
+      }
+
+      &::after {
+        background-position: left 1em top 50%;
+        @extend $before-after-common;
+      }
+    }
+
+    .other-login-btns {
+      .layui-btn {
+        padding: 0 10px;
+      }
+    }
+  }
+}
+
+.login-header11 {
+  font-size: 20px;
+  margin-bottom: 15px;
+
+  >div {
+    display: inline-block;
+  }
+
+  .register {
+    font-size: 14px;
+    line-height: 30px;
+    float: right;
+
+    a {
+      color: #E66700;
+    }
+  }
+}
+
+.sso-other-login {
+  font-size: 14px;
+  color: #9B9B9B;
+  font-weight: normal;
+}
+
+.other-login-list {
+  width: 100%;
+  text-align: center;
+}

@@ -6,21 +6,27 @@
   <base href="/">
   <meta name="viewport" content="initial-scale=1.0,user-scalable=0,maximum-scale=1.0,width=device-width">
   <title>[[block 'title']][[/block]] - HSTAR SSO</title>
-  <link rel="stylesheet" href="static/semantic-ui/semantic.min.css">
-  <link rel="stylesheet" href="assets/css/all.css"> [[block 'head']] [[/block]]
+  <!--<link rel="stylesheet" href="static/semantic-ui/semantic.min.css">-->
+  <link rel="stylesheet" href="static/iconfont/iconfont.css">
+  <link rel="stylesheet" href="assets/css/all.css">
+  <!-- split -->
+  [[block 'head']] [[/block]]
 </head>
 
 <body>
-  <div class="ui fixed inverted menu sso-header">
-    <div class="ui container">
-      <a href="" class="header item">
-        HSTAR SSO
-      </a>
-      [[if UnionId]]
-      <div class="right menu">
-        <a class="item" href="/apps">Manage Apps</a>
+  <div class="layui-layout">
+    <div class="layui-header header sso-header">
+      <div class="layui-main">
+        <a class="logo" href="/">
+          <strong>HSTAR SSO</strong>
+        </a>
+        <ul class="layui-nav float-right">
+          <li class="layui-nav-item">
+            <a href="/apps">Manage Apps</a>
+          </li>
+          <span class="layui-nav-bar"></span>
+        </ul>
       </div>
-      [[/if]]
     </div>
   </div>
   [[block 'body']] [[/block]]
