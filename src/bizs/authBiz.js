@@ -72,7 +72,7 @@ const createUnionUser = (user, provider) => {
       });
     })
     .then(() => {
-      return db.queryScalar(sqlManager.QUERY_UNION_USER_INFO, [provider, unionId]);
+      return db.queryScalar(sqlManager.QUERY_UNION_USER_BY_UNION_ID, [unionId]);
     })
     .catch(reason => {
       console.log(reason);

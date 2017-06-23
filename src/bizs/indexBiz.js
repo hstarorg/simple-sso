@@ -7,14 +7,15 @@ const util = require('../common/util');
 const getIndex = (req, res, next) => {
   let appKey = req.query.appKey || '';
   let loginUrl = `/login${appKey ? '?appKey=' + appKey : ''}`;
-  if (!req.user) {
+  let ssoUser = req.session.ssoUser;
+  if (!ssoUser) {
     return res.redirect(loginUrl);
   }
-  let unionId = req.session.ssoUser.UnionId;
+  let unionId = ssoUser.UnionId;
+  ssoUser.CreateDate = new Date(ssoUser.CreateDate);
   db.queryScalar(sqlManager.QUERY_USER_INFO_BY_ID, [unionId])
     .then(user => {
       req.items = { user };
-      console.log(appKey);
       if (appKey) {
         return db.queryScalar(sqlManager.QUERY_APP_BY_KEY, [appKey]);
       } else {
@@ -24,10 +25,10 @@ const getIndex = (req, res, next) => {
     .then(app => {
       if (app) {
         let code = util.buildCode();
-        codeStore.set(`${app.AppKey}|${code}`, req.items.user);
+        codeStore.set(`${app.AppKey}|${code}`, ssoUser);
         return res.redirect(`${app.CallbackUrl}?code=${code}`);
       }
-      res.render('index', Object.assign({ UnionId: unionId }, { data: req.items.user }));
+      res.render('index', Object.assign({ UnionId: unionId }, { data: ssoUser }));
     })
     .catch(next);
 };

@@ -1,8 +1,15 @@
 module.exports = {
   QUERY_UNION_USER_INFO: `
-SELECT t1.* FROM UnionUser t1
+SELECT t1.*,t3.Gender, t3.Location FROM UnionUser t1
 JOIN ExternalUserExt t2 ON t1.UnionId = t2.UnionId
+JOIN UnionUserExt t3 ON t1.UnionId = t3.UnionId
 WHERE t2.Provider = ? AND ExternalUserId = ?
+LIMIT 1;
+  `,
+  QUERY_UNION_USER_BY_UNION_ID: `
+SELECT t1.*, t2.Gender, t2.Location FROM UnionUser t1
+JOIN UnionUserExt t2 ON t1.UnionId = t2.UnionId
+WHERE t1.UnionId = ?
 LIMIT 1;
   `,
   INSERT_UNION_USER: `
