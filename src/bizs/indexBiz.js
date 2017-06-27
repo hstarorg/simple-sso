@@ -68,21 +68,10 @@ const getSignup = (req, res, next) => {
 };
 
 
-const doLogin = (req, res, next) => {
-  res.redirect('/');
-};
-
-
-const doSignup = (req, res, next) => {
-
-};
-
 module.exports = {
   getLogin,
   getLogout,
   getSignup,
-  doLogin,
-  doSignup,
   getIndex,
   getLoginSuccess,
   getMyApps,

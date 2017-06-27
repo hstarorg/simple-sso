@@ -63,5 +63,11 @@ WHERE Id = ?
 SELECT Id, AppName, AppDescription, AppKey, AppSecret, CallbackUrl, AppStatus, CreateBy, CreateDate
 FROM SsoApplication t1
 WHERE t1.AppKey= ?;
+  `,
+  QUERY_USER_BY_NAME_PWD: `
+SELECt UnionId, UserName, DisplayName, Password, IsExternalUser, AvatarUrl, EmailAddress, PhoneNumber, CreateDate
+FROM UnionUser
+WHERE UserName = ? AND Password = ?
+LIMIT 1
   `
 };

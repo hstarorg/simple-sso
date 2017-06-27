@@ -1,6 +1,10 @@
 new Vue({
   el: document.querySelector('.page-login'),
   data: {
+    user: {
+      UserName: '',
+      Password: ''
+    },
     rememberMe: false
   },
   methods: {
@@ -10,8 +14,14 @@ new Vue({
         window.location.reload();
       }
     },
-    doUserLogin(){
-
+    doUserLogin() {
+      if (!this.user.UserName || !this.user.Password) {
+        return AppTools.messageBox.toast('请输入账户密码');
+      }
+      AppTools.ajax.post('/login', this.user)
+      .then(data => {
+        window.location.href = '/' + window.location.search;
+      });
     }
   },
 });

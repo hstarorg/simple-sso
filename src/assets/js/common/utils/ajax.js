@@ -6,7 +6,7 @@ const defaults = {
 };
 
 const settings = {
-  baseURL: '',
+  baseURL: 'http://sso.hstar.org/api/v1',
   requestCount: 0
 };
 
@@ -35,7 +35,8 @@ const request = (method, url, data, options = {}) => {
     })
     .catch(err => {
       closeLoading();
-      let errMessage = err.message;
+      let errData = err.response.data;
+      let errMessage = errData.message || err.message;
       if (!options.noErrorTip) {
         messageBox.toast(errMessage);
       }

@@ -76,7 +76,6 @@ const refreshSecret = (req, res, next) => {
 
 const getUserInfo = (req, res, next) => {
   let data = req.body;
-  console.log(data);
   db.queryScalar(sqlManager.QUERY_APP_BY_KEY, [data.appKey])
     .then(app => {
       if (!app) {
@@ -96,6 +95,20 @@ const getUserInfo = (req, res, next) => {
     .catch(next);
 };
 
+const doLogin = (req, res, next) => {
+  let data = req.body;
+  console.log(typeof data, data.Password);
+  db.queryScalar(sqlManager.QUERY_USER_BY_NAME_PWD, [data.UserName, data.Password])
+  .then(user => {
+    if(!user){
+      return Promise.reject('Login failed, please check your username and password.');
+    }
+    req.session.ssoUser = user;
+    res.sendStatus(200);
+  })
+  .catch(next);
+};
+
 module.exports = {
   getApps,
   createApp,
@@ -103,5 +116,6 @@ module.exports = {
   deleteApp,
   getAppById,
   refreshSecret,
-  getUserInfo
+  getUserInfo,
+  doLogin
 };

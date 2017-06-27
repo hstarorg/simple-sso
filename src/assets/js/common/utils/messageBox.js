@@ -5,12 +5,7 @@ const defaults = {
 
 const toast = (message, options, done) => {
   let opt = Object.assign({}, defaults, options);
-  let index = layer.msg({
-    message,
-    position: opt.position,
-    iconClass: opt.iconClass || '',
-    duration: -1
-  });
+  let index = layer.msg(message);
   setTimeout(() => {
     layer.close(index);
     done && done.call(null, index);

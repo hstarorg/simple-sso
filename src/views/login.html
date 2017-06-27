@@ -13,15 +13,15 @@
       <span>SSO 登录</span>
       <a href="/signup" class="float-right register-link">注册</a>
     </div>
-    <form class="layui-form" @submit="doUserLogin">
+    <form class="layui-form" @submit.prevent="doUserLogin">
       <div class="layui-form-item">
         <div class="layui-input-block">
-          <input type="text" name="title" placeholder="请输入账户" size="30" class="layui-input">
+          <input type="text" name="name" placeholder="请输入账户" size="30" class="layui-input" v-model="user.UserName">
         </div>
       </div>
       <div class="layui-form-item">
         <div class="layui-input-block">
-          <input type="text" name="username" placeholder="密码不少于6位" size="30" class="layui-input">
+          <input type="text" name="pwd" placeholder="密码不少于6位" size="30" class="layui-input" v-model="user.Password">
         </div>
       </div>
       <div class="layui-form-item">
@@ -31,7 +31,7 @@
         </div>
       </div>
       <div class="layui-form-item">
-        <button type="button" class="layui-btn layui-btn-radius btn-login">登录</button>
+        <button class="layui-btn layui-btn-radius btn-login">登录</button>
       </div>
       <div class="layui-form-item">
         <div class="other-login-divider">

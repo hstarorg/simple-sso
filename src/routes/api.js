@@ -4,6 +4,8 @@ const router = express.Router();
 const authBiz = require('./../bizs/authBiz');
 const apiBiz = require('./../bizs/apiBiz');
 
+router.post('/login', apiBiz.doLogin);
+
 router.get('/app', authBiz.mustLogin, apiBiz.getApps);
 
 router.get('/app/:appId', authBiz.mustLogin, apiBiz.getAppById);
