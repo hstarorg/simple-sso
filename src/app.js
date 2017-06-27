@@ -77,22 +77,44 @@ app.use('/', indexRouter);
 app.use('/auth', authRouter);
 app.use('/api/v1', apiRouter);
 
-// catch 404 and forward to error handler
 app.use((req, res, next) => {
-  let err = new Error('Not Found');
-  err.status = 404;
-  next(err);
+  next({
+    status: 404,
+    code: '404',
+    message: '404 Not Found.'
+  });
 });
-
-// error handler
 app.use((err, req, res, next) => {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
+  let status = 500;
+  let message = '';
+  let code = '500';
+  let stack = null;
+  // 简单业务错误
+  if (typeof err === 'string') {
+    status = 400;
+    code = '400';
+    message = err;
+  } else if (err.isJoi) {// 请求验证错误
+    status = 400;
+    code = '400';
+    message = err.details.map(x => x.message).join('\n');
+  } else if (err instanceof Error) { // 标准错误处理
+    if (err.code) {
+      code = err.code;
+    }
+    message = err.message;
+    stack = err.stack;
+  } else { // Next({status: 400, code: 'xxx'}) 自定义错误
+    status = err.status || 400;
+    code = err.code || '400';
+    message = err.message;
+  }
+  res.status(status).json({
+    status,
+    code,
+    message,
+    stack: req.app.get('env') === 'development' ? stack : {}
+  });
 });
 
 module.exports = app;

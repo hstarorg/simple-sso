@@ -108,10 +108,17 @@ const doLogin = (req, res, next) => {
 };
 
 const mustLogin = (req, res, next) => {
+  console.log(req.originalUrl);
   if (req.session && req.session.ssoUser) {
     return next();
   }
-  res.redirect('/login');
+
+  if (req.originalUrl.indexOf('/api') === 0) {
+    // api
+    res.status(401).end();
+  } else {
+    res.redirect('/login');
+  }
 };
 
 module.exports = {
