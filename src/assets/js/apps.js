@@ -56,7 +56,7 @@ new Vue({
     },
 
     _loadAppList() {
-      axios.get(`${AppConf.apiHost}/app`)
+      AppTools.ajax.get(`${AppConf.apiHost}/app`)
         .then(res => {
           this.appList = res.data;
         });

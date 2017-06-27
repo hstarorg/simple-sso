@@ -13,7 +13,7 @@
       <span>SSO 登录</span>
       <a href="/signup" class="float-right register-link">注册</a>
     </div>
-    <form class="layui-form">
+    <form class="layui-form" @submit="doUserLogin">
       <div class="layui-form-item">
         <div class="layui-input-block">
           <input type="text" name="title" placeholder="请输入账户" size="30" class="layui-input">
@@ -27,11 +27,11 @@
       <div class="layui-form-item">
         <div class="layui-input-block">
           <lv-checkbox v-model="rememberMe">记住我</lv-checkbox>
-          <a href="/password/new" class="float-right forget-password">忘记密码?</a>
+          <!--<a href="/password/new" class="float-right forget-password">忘记密码?</a>-->
         </div>
       </div>
       <div class="layui-form-item">
-        <button class="layui-btn layui-btn-radius btn-login">登录</button>
+        <button type="button" class="layui-btn layui-btn-radius btn-login">登录</button>
       </div>
       <div class="layui-form-item">
         <div class="other-login-divider">

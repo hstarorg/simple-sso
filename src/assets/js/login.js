@@ -9,6 +9,9 @@ new Vue({
       win.onclose = function () {
         window.location.reload();
       }
+    },
+    doUserLogin(){
+
     }
   },
 });
