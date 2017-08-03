@@ -97,16 +97,43 @@ const getUserInfo = (req, res, next) => {
 
 const doLogin = (req, res, next) => {
   let data = req.body;
-  console.log(typeof data, data.Password);
-  db.queryScalar(sqlManager.QUERY_USER_BY_NAME_PWD, [data.UserName, data.Password])
-  .then(user => {
-    if(!user){
-      return Promise.reject('Login failed, please check your username and password.');
-    }
-    req.session.ssoUser = user;
-    res.sendStatus(200);
-  })
-  .catch(next);
+  db.queryScalar(sqlManager.QUERY_USER_BY_NAME_PWD, [data.UserName, util.hashPassword(data.Password)])
+    .then(user => {
+      if (!user) {
+        return Promise.reject('登录失败，请检查您的账户/密码');
+      }
+      req.session.ssoUser = user;
+      res.sendStatus(200);
+    })
+    .catch(next);
+};
+
+const _usenameExists = username => {
+  return db.queryScalar(sqlManager.USER_NAME_EXISTS, [username])
+    .then(result => {
+      return result.TotalCount > 0;
+    });
+};
+
+const doRegister = (req, res, next) => {
+  let data = req.body;
+  if (!data.UserName || !data.Password2) {
+    return next('必须提供账户/密码');
+  }
+  if (data.UserName.length < 4) {
+    return next('账户名至少4位');
+  }
+  _usenameExists(data.UserName)
+    .then(exists => {
+      if (exists) {
+        return Promise.reject('用户名已存在，请更改后再试');
+      }
+      return db.queryScalar(sqlManager.CREATE_CUSTOM_USER, [data.UserName, data.UserName, util.hashPassword(data.Password2)]);
+    })
+    .then(() => {
+      res.sendStatus(201);
+    })
+    .catch(next);
 };
 
 module.exports = {
@@ -117,5 +144,6 @@ module.exports = {
   getAppById,
   refreshSecret,
   getUserInfo,
-  doLogin
+  doLogin,
+  doRegister
 };

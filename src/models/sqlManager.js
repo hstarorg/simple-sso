@@ -68,6 +68,14 @@ WHERE t1.AppKey= ?;
 SELECt UnionId, UserName, DisplayName, Password, IsExternalUser, AvatarUrl, EmailAddress, PhoneNumber, CreateDate
 FROM UnionUser
 WHERE UserName = ? AND Password = ?
-LIMIT 1
+LIMIT 1;
+  `,
+  USER_NAME_EXISTS: `
+SELECT COUNT(0) AS TotalCount FROM UnionUser t1
+WHERE IsExternalUser = 0 AND UserName = ?;
+  `,
+  CREATE_CUSTOM_USER: `
+INSERT INTO UnionUser(UserName, DisplayName, Password, IsExternalUser, AvatarUrl, EmailAddress, PhoneNumber, CreateDate)
+VALUES(?, ?, ?, 0, '', '', '', now());
   `
 };

@@ -14,12 +14,12 @@
     <form class="layui-form" @submit.prevent="doRegister">
       <div class="layui-form-item">
         <div class="layui-input-block">
-          <input type="text" name="name" placeholder="请输入账户" size="30" class="layui-input" v-model="user.UserName">
+          <input type="text" name="name" placeholder="请输入账户（至少4位）" size="30" class="layui-input" v-model="user.UserName">
         </div>
       </div>
       <div class="layui-form-item">
         <div class="layui-input-block">
-          <input type="password" name="pwd" placeholder="密码不少于6位" size="30" class="layui-input" v-model="user.Password">
+          <input type="password" name="pwd" placeholder="密码不少于4位" size="30" class="layui-input" v-model="user.Password">
         </div>
       </div>
       <div class="layui-form-item">

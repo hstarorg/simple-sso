@@ -6,6 +6,8 @@ const apiBiz = require('./../bizs/apiBiz');
 
 router.post('/login', apiBiz.doLogin);
 
+router.post('/register', apiBiz.doRegister);
+
 router.get('/app', authBiz.mustLogin, apiBiz.getApps);
 
 router.get('/app/:appId', authBiz.mustLogin, apiBiz.getAppById);
