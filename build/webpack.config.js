@@ -9,6 +9,7 @@ module.exports = {
     apps: util.root('src/assets/js/apps.js'),
     'app-detail': util.root('src/assets/js/app-detail.js'),
     'login': util.root('src/assets/js/login.js'),
+    'register': util.root('src/assets/js/register.js'),
     'css': util.root('src/assets/js/vendor.js')
   },
   output: {

@@ -1,6 +1,36 @@
 [[extend './shared/_layout.html']]
 <!-- title -->
-[[block 'title']]Sign in[[/block]]
+[[block 'title']]Sign up[[/block]] [[block 'footer']]
+<script src="assets/js/register.js"></script>
+[[/block]]
 <!-- body -->
 [[block 'body']]
+<div class="page-register" v-cloak>
+  <div class="lr-box">
+    <div class="box-header">
+      <span>注册独立账户</span>
+      <a href="/login" class="float-right right-link">返回登录</a>
+    </div>
+    <form class="layui-form" @submit.prevent="doRegister">
+      <div class="layui-form-item">
+        <div class="layui-input-block">
+          <input type="text" name="name" placeholder="请输入账户" size="30" class="layui-input" v-model="user.UserName">
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <div class="layui-input-block">
+          <input type="password" name="pwd" placeholder="密码不少于6位" size="30" class="layui-input" v-model="user.Password">
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <div class="layui-input-block">
+          <input type="password" name="pwd2" placeholder="再次输入密码" size="30" class="layui-input" v-model="user.Password2">
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <button class="layui-btn layui-btn-radius btn-black btn-register">注册</button>
+      </div>
+    </form>
+  </div>
+</div>
 [[/block]]

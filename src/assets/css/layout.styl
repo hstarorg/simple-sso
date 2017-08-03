@@ -36,5 +36,47 @@
 }
 
 [v-cloak] {
-  display:none !important;
+  display: none !important;
+}
+
+// 登录注册盒子
+.lr-box {
+  width: 450px;
+  margin: 0 auto;
+  border: 1px solid rgba(34, 36, 38, 0.15);
+  box-shadow: 0 1px 2px 0 rgba(34, 36, 38, 0.15);
+  border-radius: 4px;
+
+  .box-header {
+    padding: 24px;
+
+    span {
+      font-size: 20px;
+    }
+
+    .right-link {
+      line-height: 26px;
+      color: #E66700;
+    }
+  }
+
+  .layui-form {
+    width: 76%;
+    margin-left: 12%;
+
+    .layui-input-block {
+      margin-left: 0;
+    }
+
+    .btn-black {
+      background: #1b1c1d;
+      width: 100%;
+    }
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .lr-box {
+    width: 90%;
+  }
 }

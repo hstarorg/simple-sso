@@ -11,44 +11,7 @@ $before-after-common {
 .page-login {
   padding-top: 100px;
 
-  .login-box {
-    width: 450px;
-    margin: 0 auto;
-    border: 1px solid rgba(34, 36, 38, 0.15);
-    box-shadow: 0 1px 2px 0 rgba(34, 36, 38, 0.15);
-    border-radius: 4px;
-
-    .layui-form {
-      width: 76%;
-      margin-left: 12%;
-
-      .layui-input-block {
-        margin-left: 0;
-      }
-
-      .forget-password {
-        line-height: 36px;
-      }
-
-      .btn-login {
-        background: #1b1c1d;
-        width: 100%;
-      }
-    }
-
-    .login-header {
-      padding: 24px;
-
-      span {
-        font-size: 20px;
-      }
-
-      .register-link {
-        line-height: 26px;
-        color: #E66700;
-      }
-    }
-
+  .lr-box {
     .other-login-divider {
       display: table;
       white-space: nowrap;
@@ -70,25 +33,25 @@ $before-after-common {
       }
     }
   }
+
+  .forget-password {
+    line-height: 36px;
+  }
+
+  .sso-other-login {
+    font-size: 14px;
+    color: #9B9B9B;
+    font-weight: normal;
+  }
+
+  .other-login-list {
+    width: 100%;
+    text-align: center;
+  }
 }
 
 @media screen and (max-width: 750px) {
   .page-login {
     padding-top: 50px;
-
-    .login-box {
-      width: 90%;
-    }
   }
-}
-
-.sso-other-login {
-  font-size: 14px;
-  color: #9B9B9B;
-  font-weight: normal;
-}
-
-.other-login-list {
-  width: 100%;
-  text-align: center;
 }
