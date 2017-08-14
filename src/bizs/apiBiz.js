@@ -120,8 +120,8 @@ const doRegister = (req, res, next) => {
   if (!data.UserName || !data.Password2) {
     return next('必须提供账户/密码');
   }
-  if (data.UserName.length < 4) {
-    return next('账户名至少4位');
+  if (data.UserName.length < 3) {
+    return next('账户名至少3位');
   }
   _usenameExists(data.UserName)
     .then(exists => {
