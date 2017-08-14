@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 0.1.1 (2017-08-14)
+
+- 将账户名限制修改为三位
+
 ## 0.1.0 (2017-08-03)
 
 - 实现QQ、微博、Github、Google三方登录（微信认证一直没法通过，所以无法使用微信登录）
