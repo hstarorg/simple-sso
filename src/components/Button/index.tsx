@@ -1,10 +1,20 @@
-import { PropsWithChildren } from 'react';
+import classNames from 'classnames';
+import type { MouseEventHandler, PropsWithChildren } from 'react';
 
-export type ButtonProps = {};
-export function Button(props: PropsWithChildren<ButtonProps>) {
-  const { children } = props;
+export type ButtonProps = {
+  block?: boolean;
+  htmlType?: 'button' | 'reset' | 'submit';
+  onClick?: MouseEventHandler<HTMLButtonElement> | undefined;
+};
+export function Button({
+  htmlType = 'button',
+  block,
+  children,
+  onClick,
+}: PropsWithChildren<ButtonProps>) {
+  const rootClass = classNames('layui-btn', { 'layui-btn-fluid': block });
   return (
-    <button type="button" className="layui-btn">
+    <button type={htmlType} className={rootClass} onClick={onClick}>
       {children}
     </button>
   );

@@ -1,8 +1,19 @@
 import { Tabs } from '@/components';
+import { sessionStore } from '@/server/utils';
 import { redirect } from 'next/navigation';
+import { NextRequest } from 'next/server';
+import { cookies } from 'next/headers';
 
-export default function Home() {
-  // redirect('/signin');
+export default function Home(req: NextRequest) {
+  const cookieStore = cookies();
+  const sid = cookieStore.get('sid')?.value;
+  const sessionUser = sessionStore.get(sid || '');
+
+  // 没有登录就跳转到登录界面
+  if (!sessionUser) {
+    return redirect('/signin');
+  }
+
   return (
     <div>
       <div className="layui-row layui-col-space8">
@@ -62,8 +73,12 @@ export default function Home() {
         </div>
         <div className="layui-col-xs6">
           <Tabs activeKey="abc" type="card">
-            <Tabs.TabPane tab="统计" tabKey="abc">这是要给统计面盘</Tabs.TabPane>
-            <Tabs.TabPane tab="统计2" tabKey="ab2c">这是要给统计面22盘</Tabs.TabPane>
+            <Tabs.TabPane tab="统计" tabKey="abc">
+              这是要给统计面盘
+            </Tabs.TabPane>
+            <Tabs.TabPane tab="统计2" tabKey="ab2c">
+              这是要给统计面22盘
+            </Tabs.TabPane>
           </Tabs>
         </div>
       </div>

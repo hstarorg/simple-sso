@@ -25,7 +25,7 @@ export default function RootLayout({
     <html>
       <head>
         <link rel="stylesheet" href="layui/css/layui.css" />
-        <Script src="layui/layui.js" />
+        {/* <Script src="layui/layui.js" /> */}
       </head>
       <body className={inter.className}>
         <div className="layui-layout layui-layout-admin">
