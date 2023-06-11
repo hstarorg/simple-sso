@@ -43,7 +43,7 @@ export function Tabs(props: PropsWithChildren<TabsProps>) {
           console.log(activeKey, item, 'ff');
           const showThis = activeKey === item?.tabKey;
           return (
-            <li className={showThis ? 'layui-this' : ''}>{item!.label}</li>
+            <li key={item?.tabKey} className={showThis ? 'layui-this' : ''}>{item!.label}</li>
           );
         })}
       </ul>
@@ -51,7 +51,7 @@ export function Tabs(props: PropsWithChildren<TabsProps>) {
         {tabItems.map(item => {
           const show = item?.tabKey === activeKey;
           return (
-            <div className="layui-tab-item layui-show">{item?.children}</div>
+            <div key={item?.tabKey} className="layui-tab-item layui-show">{item?.children}</div>
           );
         })}
       </div>

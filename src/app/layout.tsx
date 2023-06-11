@@ -43,10 +43,7 @@ export default function RootLayout({
               </li>
               <li className="layui-nav-item layui-hide layui-show-sm-inline-block">
                 <a>
-                  <img
-                    src="https://unpkg.com/outeres@0.0.10/img/layui/icon-v2.png"
-                    className="layui-nav-img"
-                  />
+                  <img className="layui-nav-img" />
                   tester
                 </a>
                 <dl className="layui-nav-child">

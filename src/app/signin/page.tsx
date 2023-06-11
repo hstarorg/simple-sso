@@ -2,7 +2,7 @@
 import { Button, CheckBox, Form, Input, LayIcon } from '@/components';
 import styles from './page.module.css';
 import Link from 'next/link';
-import { redirect, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 export default function SignIn() {
   const [form] = Form.useForm();
   const router = useRouter();
@@ -27,6 +27,13 @@ export default function SignIn() {
         const message = reason.errorFields[0].errors[0];
         alert(message);
       });
+  }
+
+  function openLoginWindow(href: string) {
+    const win = window.open(href, '', 'width=500,height=500,channelmode=yes');
+    win!.onclose = function () {
+      window.location.reload();
+    };
   }
 
   return (
@@ -59,14 +66,25 @@ export default function SignIn() {
           <div className={styles.login_other + ' layui-form-item'}>
             <label>社交账号登录</label>
             <span style={{ padding: ' 0 21px 0 6px' }}>
-              <a>
+              <a
+                onClick={() => {
+                  openLoginWindow('/apis/auth/github');
+                }}>
+                &nbsp;&nbsp;
+                <LayIcon type="github" color="#4daf29" />
+              </a>
+              <a
+                onClick={() => {
+                  openLoginWindow('/auth/qq');
+                }}>
+                &nbsp;&nbsp;
                 <LayIcon type="login-qq" color="#3492ed" />
               </a>
-              <a>
-                &nbsp;&nbsp;
-                <LayIcon type="login-wechat" color="#4daf29" />
-              </a>
-              <a>
+
+              <a
+                onClick={() => {
+                  openLoginWindow('/auth/weibo');
+                }}>
                 &nbsp;&nbsp;
                 <LayIcon type="login-weibo" color="#cf1900" />
               </a>

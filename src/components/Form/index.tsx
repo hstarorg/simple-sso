@@ -21,7 +21,7 @@ export function Form({
   );
 }
 
-Form.Item = (props: FieldProps) => {
+Form.Item = function FormItem(props: FieldProps) {
   return (
     <div className="layui-form-item">
       <Field {...props} />

@@ -1,7 +1,13 @@
 import classnames from 'classnames';
 
 export type LayIconProps = {
-  type: 'login-qq' | 'login-wechat' | 'login-weibo' | 'username' | 'password' ;
+  type:
+    | 'login-qq'
+    | 'login-wechat'
+    | 'login-weibo'
+    | 'username'
+    | 'password'
+    | 'github';
   color?: string;
 };
 

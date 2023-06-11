@@ -1,10 +1,9 @@
 import { Tabs } from '@/components';
 import { sessionStore } from '@/server/utils';
 import { redirect } from 'next/navigation';
-import { NextRequest } from 'next/server';
 import { cookies } from 'next/headers';
 
-export default function Home(req: NextRequest) {
+export default function Home() {
   const cookieStore = cookies();
   const sid = cookieStore.get('sid')?.value;
   const sessionUser = sessionStore.get(sid || '');
@@ -26,40 +25,40 @@ export default function Home(req: NextRequest) {
             <tbody>
               <tr>
                 <td colSpan={2} className="user-avatar">
-                  <img title="[[data.UnionId]]" src="[[data.AvatarUrl]]" />
+                  <img title="data.UnionId" />
                 </td>
               </tr>
               <tr>
                 <td className="text-right">UserName</td>
-                <td>[[data.UserName]]</td>
+                <td>data.UserName</td>
               </tr>
               <tr>
                 <td className="text-right">DisplayName</td>
-                <td>[[data.DisplayName]]</td>
+                <td>data.DisplayName</td>
               </tr>
               <tr>
                 <td className="text-right">Is External User</td>
-                <td>[[data.IsExternalUser === 1 ? 'Yes': 'No']]</td>
+                <td>sss</td>
               </tr>
               <tr>
                 <td className="text-right">Email Address</td>
-                <td>[[data.EmailAddress]]</td>
+                <td>data.EmailAddress</td>
               </tr>
               <tr>
                 <td className="text-right">Phone Number</td>
-                <td>[[data.PhoneNumber]]</td>
+                <td>data.PhoneNumber</td>
               </tr>
               <tr>
                 <td className="text-right">Gender</td>
-                <td>[[data.Gender]]</td>
+                <td>sss</td>
               </tr>
               <tr>
                 <td className="text-right">Location</td>
-                <td>[[data.Location]]</td>
+                <td>ddd</td>
               </tr>
               <tr>
                 <td className="text-right">Create Date</td>
-                <td>[[data.CreateDate.toLocaleDateString()]]</td>
+                <td>dd</td>
               </tr>
               <tr>
                 <td colSpan={2} className="text-center">
