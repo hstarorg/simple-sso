@@ -9,7 +9,7 @@ export const config = {
   useRedis: false, // 是否使用redis存储session
   sessionSecret: 'testabcde_X!', //Math.random().toString(36), // Session 安全码
   dbConfig: {
-    host: process.env.DB_HOST,
+    host: getEnv('DB_HOST'),
     port: process.env.DB_PORT,
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,

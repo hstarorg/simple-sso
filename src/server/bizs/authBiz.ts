@@ -139,18 +139,3 @@ module.exports = {
   doLogin,
   mustLogin,
 };
-
-export const doNormalLogin = (userInfo: {
-  userName: string;
-  password: string;
-}) => {
-  db.queryScalar(SqlManager.QUERY_USER_BY_NAME_PWD, [
-    userInfo.userName,
-    util.hashPassword(userInfo.password),
-  ]).then(user => {
-    if (!user) {
-      return Promise.reject('登录失败，请检查您的账户/密码');
-    }
-    return user;
-  });
-};

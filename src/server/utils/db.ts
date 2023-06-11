@@ -38,7 +38,7 @@ class MySqlHelper {
     });
   }
 
-  beginTransaction() {
+  beginTransaction(): Promise<mysql.PoolConnection> {
     return this._getConnection().then(conn => {
       (conn as any).isInTransaction = true;
       return new Promise((resolve, reject) => {
