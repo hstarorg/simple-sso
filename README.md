@@ -4,14 +4,13 @@ A simple SSO(single sign on) project.
 
 ## Getting Started
 
+> 推荐使用 pnpm 进行包管理
+
 First, run the development server:
 
 ```bash
 # Run Dev
-npm run dev
-
-# Build
-npm run build
+pnpm dev
 ```
 
 ## Change Log

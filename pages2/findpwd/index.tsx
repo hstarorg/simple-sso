@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import Link from "next/link";
-import { Form, Input, Card, Button, Divider, Steps } from "antd";
+import { Form, Input, Card, Button,  Steps } from "antd";
 import Head from "next/head";
 import styles from "./index.module.css";
 

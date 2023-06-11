@@ -25,17 +25,17 @@ module.exports = {
   sites: {
     github: {
       appKey: '5aa6e663602ddb34c6df',
-      appSecret: '',
+      appSecret: 'a8e9b4d713f7bbf3e331b7116898cfd3deea6fa0',
       callbackUrl: 'https://auth.hstar.vip/auth/github/callback' //'http://sso.hstar.org/auth/github/callback'
     },
     weibo: {
       appKey: '3987010595',
-      appSecret: '',
+      appSecret: 'f22595e9ab7e3fe070bdda514aef2190',
       callbackUrl: 'https://auth.hstar.vip/auth/weibo/callback'
     },
     qq: {
       appKey: '101395571',
-      appSecret: '',
+      appSecret: '347ff26df9336db70ce39220867d9ea8',
       callbackUrl: 'https://auth.hstar.vip/auth/qq/callback'
     },
     // google: {

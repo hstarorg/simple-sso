@@ -1,0 +1,22 @@
+.login_container {
+  width: 450px;
+  margin: 0 auto;
+  margin-top: 100px;
+  border: 1px solid rgba(34, 36, 38, 0.15);
+  box-shadow: 0 1px 2px 0 rgba(34, 36, 38, 0.15);
+  border-radius: 4px;
+  padding: 24px;
+}
+.login_form_title {
+  margin-bottom: 24px;
+  font-weight: 600;
+  font-size: 24px;
+}
+
+.login_other :global(.layui-icon) {
+  position: relative;
+  display: inline-block;
+  margin: 0 2px;
+  top: 2px;
+  font-size: 26px;
+}
