@@ -24,7 +24,7 @@ export default function RootLayout({
   return (
     <html>
       <head>
-        <link rel="stylesheet" href="layui/css/layui.css" />
+        <link rel="stylesheet" href="/layui/css/layui.css" />
         {/* <Script src="layui/layui.js" /> */}
       </head>
       <body className={inter.className}>
