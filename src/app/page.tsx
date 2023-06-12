@@ -1,7 +1,7 @@
 import { sessionStore } from '@/server/utils';
 import { redirect } from 'next/navigation';
 import { cookies } from 'next/headers';
-import { AppList } from './_partials/AppList';
+import { UserHome } from './_partials/UserHome';
 
 export default function Home() {
   const cookieStore = cookies();
@@ -13,5 +13,5 @@ export default function Home() {
     return redirect('/signin');
   }
 
-  return <AppList />;
+  return <UserHome />;
 }

@@ -1,7 +1,7 @@
 'use client';
 import { Tabs } from '@/components';
 
-export function AppList() {
+export function UserHome() {
   return (
     <div>
       <div className="layui-row layui-col-space8">
@@ -51,7 +51,7 @@ export function AppList() {
               </tr>
               <tr>
                 <td colSpan={2} className="text-center">
-                  <a className="layui-btn layui-btn-danger" href="/logout">
+                  <a className="layui-btn layui-btn-danger" href="/signout">
                     注销登录
                   </a>
                 </td>
