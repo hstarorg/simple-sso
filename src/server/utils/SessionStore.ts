@@ -39,5 +39,5 @@ class SessionStore {
     return cacheItem.data;
   }
 }
-
-export const sessionStore = new SessionStore({ expires: 20 * 3600 });
+// 默认过期时间： 20 分钟
+export const sessionStore = new SessionStore({ expires: 20 * 3600 * 1000 });
