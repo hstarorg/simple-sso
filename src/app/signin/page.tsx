@@ -2,10 +2,20 @@
 import { Button, CheckBox, Form, Input, LayIcon } from '@/components';
 import styles from './page.module.css';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { redirect, useRouter } from 'next/navigation';
+import { signIn, signOut, useSession } from 'next-auth/react';
+
 export default function SignIn() {
   const [form] = Form.useForm();
   const router = useRouter();
+
+  const session = useSession();
+  if (session?.status === 'authenticated') {
+    router.replace('/');
+    return;
+  }
+
+  console.log('session', session);
 
   function doSignin() {
     form
@@ -40,7 +50,7 @@ export default function SignIn() {
     <>
       <Form form={form}>
         <div className={styles.login_container}>
-          <div className={styles.login_form_title}>SSO 登录</div>
+          <div className={styles.login_form_title}>HstarAuth 登录</div>
           <Form.Item
             name={'username'}
             rules={[{ required: true, message: '请输入用户名' }]}>
@@ -50,7 +60,7 @@ export default function SignIn() {
             name="password"
             rules={[{ required: true, message: '请输入密码' }]}>
             <Input.Password
-              prefix={<LayIcon type="username" />}
+              prefix={<LayIcon type="password" />}
               placeholder="密码"
             />
           </Form.Item>
@@ -63,12 +73,13 @@ export default function SignIn() {
               登录
             </Button>
           </Form.Item>
+
           <div className={styles.login_other + ' layui-form-item'}>
             <label>社交账号登录</label>
             <span style={{ padding: ' 0 21px 0 6px' }}>
               <a
                 onClick={() => {
-                  openLoginWindow('/apis/auth/github');
+                  openLoginWindow('/auth/github');
                 }}>
                 &nbsp;&nbsp;
                 <LayIcon type="github" color="#4daf29" />

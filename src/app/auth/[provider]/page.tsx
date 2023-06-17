@@ -1,9 +1,13 @@
-import {router} from '@/middleware/auth'
+'use client';
+import { signIn } from 'next-auth/react';
+import { useEffect } from 'react';
+
 export default function AuthPage({ params, searchParams }: any) {
-
-  // router.run(req)
-
   const provider = params.provider;
-  console.log(params, provider);
-  return <div>sss</div>;
+
+  useEffect(() => {
+    signIn(provider);
+  }, []);
+
+  return null;
 }

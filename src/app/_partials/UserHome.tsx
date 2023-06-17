@@ -1,5 +1,6 @@
 'use client';
 import { Tabs } from '@/components';
+import { signOut } from 'next-auth/react';
 
 export function UserHome() {
   return (
@@ -51,7 +52,11 @@ export function UserHome() {
               </tr>
               <tr>
                 <td colSpan={2} className="text-center">
-                  <a className="layui-btn layui-btn-danger" href="/signout">
+                  <a
+                    className="layui-btn layui-btn-danger"
+                    onClick={() => {
+                      signOut();
+                    }}>
                     注销登录
                   </a>
                 </td>
