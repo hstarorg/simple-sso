@@ -14,7 +14,7 @@
   "homepage": "https://github.com/hstarorg/simple-sso#readme",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "SET https_proxy=http://127.0.0.1:7890 && next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"

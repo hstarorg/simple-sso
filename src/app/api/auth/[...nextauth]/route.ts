@@ -1,5 +1,6 @@
 import NextAuth, { NextAuthOptions } from 'next-auth';
 import GithubProvider from 'next-auth/providers/github';
+import { QQProvider } from './providers/QQProvider';
 
 // For more information on each option (and a full list of options) go to
 // https://next-auth.js.org/configuration/options
@@ -7,15 +8,10 @@ const authOptions: NextAuthOptions = {
   debug: true,
   // https://next-auth.js.org/configuration/providers/oauth
   providers: [
-    // Auth0Provider({
-    //   clientId: process.env.AUTH0_ID,
-    //   clientSecret: process.env.AUTH0_SECRET,
-    //   issuer: process.env.AUTH0_ISSUER,
-    // }),
-    // FacebookProvider({
-    //   clientId: process.env.FACEBOOK_ID,
-    //   clientSecret: process.env.FACEBOOK_SECRET,
-    // }),
+    QQProvider({
+      clientId: process.env.QQ_ID!,
+      clientSecret: process.env.QQ_SECRET!,
+    }),
     GithubProvider({
       clientId: process.env.GITHUB_ID!,
       clientSecret: process.env.GITHUB_SECRET!,
