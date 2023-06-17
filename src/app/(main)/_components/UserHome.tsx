@@ -2,7 +2,13 @@
 import { Tabs } from '@/components';
 import { signOut } from 'next-auth/react';
 
-export function UserHome() {
+type UserHomeProps = {
+  user: any;
+};
+
+export function UserHome(props: UserHomeProps) {
+  const { user } = props;
+  console.log(user, 'ggggggggggggggg');
   return (
     <div>
       <div className="layui-row layui-col-space8">
@@ -15,40 +21,40 @@ export function UserHome() {
             <tbody>
               <tr>
                 <td colSpan={2} className="user-avatar">
-                  <img title="data.UnionId" />
+                  <img title={user.UnionId} src={user.AvatarUrl} />
                 </td>
               </tr>
               <tr>
                 <td className="text-right">UserName</td>
-                <td>data.UserName</td>
+                <td>{user.UserName}</td>
               </tr>
               <tr>
                 <td className="text-right">DisplayName</td>
-                <td>data.DisplayName</td>
+                <td>{user.DisplayName}</td>
               </tr>
               <tr>
                 <td className="text-right">Is External User</td>
-                <td>sss</td>
+                <td>{user.IsExternalUser}</td>
               </tr>
               <tr>
                 <td className="text-right">Email Address</td>
-                <td>data.EmailAddress</td>
+                <td>{user.EmailAddress}</td>
               </tr>
               <tr>
                 <td className="text-right">Phone Number</td>
-                <td>data.PhoneNumber</td>
+                <td>{user.PhoneNumber}</td>
               </tr>
               <tr>
                 <td className="text-right">Gender</td>
-                <td>sss</td>
+                <td>{user.Gender}</td>
               </tr>
               <tr>
                 <td className="text-right">Location</td>
-                <td>ddd</td>
+                <td>{user.Location}</td>
               </tr>
               <tr>
                 <td className="text-right">Create Date</td>
-                <td>dd</td>
+                <td>{user.CreateDate?.toString()}</td>
               </tr>
               <tr>
                 <td colSpan={2} className="text-center">

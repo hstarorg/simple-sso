@@ -21,17 +21,23 @@ export default function SignIn() {
     form
       .validateFields()
       .then(values => {
-        fetch('/apis/login', {
-          method: 'POST',
-          headers: { 'content-type': 'application/json' },
-          body: JSON.stringify(values),
-        })
-          .then(res => res.json())
-          .then(data => {
-            if (data.success) {
-              router.push('/');
-            }
-          });
+        // fetch('/apis/login', {
+        //   method: 'POST',
+        //   headers: { 'content-type': 'application/json' },
+        //   body: JSON.stringify(values),
+        // })
+        //   .then(res => res.json())
+        //   .then(data => {
+        //     if (data.success) {
+        //       router.push('/');
+        //     }
+        //   });
+
+        signIn('credentials', {
+          username: values.username,
+          password: values.password,
+          callbackUrl: '/',
+        });
       })
       .catch(reason => {
         const message = reason.errorFields[0].errors[0];
